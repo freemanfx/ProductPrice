@@ -27,3 +27,6 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+/.idea/workspace.xml
+.DS_Store
