@@ -26,14 +26,9 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- Google Maps API Key -->
-        <!--<meta-data-->
-            <!--android:name="com.google.android.maps.v2.API_KEY"-->
-            <!--android:value="AIzaSyAZ_z2_7RbVgNoUdIFY8I8msvi2hC0r2rU" />-->
-
         <meta-data
         android:name="com.google.android.maps.v2.API_KEY"
         android:value="AIzaSyCL0DkzQYM1lQ_pAFkTRvFFsTw5JURV-pY" />
-
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>

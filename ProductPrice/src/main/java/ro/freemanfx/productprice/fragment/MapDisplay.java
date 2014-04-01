@@ -5,8 +5,9 @@ import android.os.Bundle;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 
-public class MapDisplay extends MapFragment {
+public class MapDisplay extends SupportMapFragment {
 
     private GoogleMap map;
 
