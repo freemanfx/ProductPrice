@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.fragment.MapDisplay;
+import ro.freemanfx.productprice.fragment.MainFragment;
 
 public class MainActivity extends FragmentActivity {
     @Override
@@ -15,7 +15,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.mainContainer,new MapDisplay())
+                .replace(R.id.mainContainer,new MainFragment())
                 .commit();
     }
 

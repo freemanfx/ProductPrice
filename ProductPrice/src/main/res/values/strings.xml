@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProductPrice</string>
+    <string name="find_by_barcode">Find by barcode</string>
 </resources>
