@@ -23,5 +23,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.jakewharton:butterknife:4.0.1'
+    compile 'com.google.zxing:core:2.2'
+    compile 'com.google.zxing:android-integration:2.2'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
