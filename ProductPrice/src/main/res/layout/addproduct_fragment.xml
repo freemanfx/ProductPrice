@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/small_padding"
+    android:paddingLeft="@dimen/small_padding"
+    android:paddingRight="@dimen/small_padding"
+    android:paddingTop="@dimen/small_padding">
+
+    <TextView
+        android:id="@+id/barcode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:gravity="center_vertical"
+        android:hint="1234567890123"
+        android:paddingLeft="@dimen/small_padding" />
+
+    <EditText
+        android:layout_marginTop="@dimen/small_padding"
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:hint="Product name" />
+
+    <EditText
+        android:layout_marginTop="@dimen/small_padding"
+        android:id="@+id/place"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:hint="Place" />
+
+    <EditText
+        android:layout_marginTop="@dimen/small_padding"
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:hint="Price" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_marginTop="@dimen/input_height"
+        android:text="@string/Add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height" />
+</LinearLayout>
