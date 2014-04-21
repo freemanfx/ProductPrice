@@ -21,6 +21,7 @@ public class ScanProductActivity extends SingleFragmentActivity {
         if(!launched){
             launched = true;
             ScanUtil.scanProductCode(this);
+            getSupportFragmentManager().popBackStack();
         }
     }
 
@@ -33,6 +34,7 @@ public class ScanProductActivity extends SingleFragmentActivity {
             Intent intent = new Intent(this, AddProductActivity.class);
             intent.putExtra(BARCODE, barcode);
             startActivity(intent);
+            finish();
         }
     }
 }
