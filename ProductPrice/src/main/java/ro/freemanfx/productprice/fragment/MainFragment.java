@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -29,7 +30,7 @@ public class MainFragment extends Fragment implements Constants {
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(MainFragment.this.getActivity(),"Not implemented yet!", Toast.LENGTH_SHORT).show();
             }
         });
 
