@@ -1,19 +1,33 @@
 package ro.freemanfx.productprice.domain;
 
-public class Product {
-    private final String barcode;
-    private final String name;
+import org.orman.mapper.Model;
+import org.orman.mapper.annotation.Entity;
+
+@Entity
+public class Product extends Model<Product> {
+    private String barcode;
+    private String name;
+
+    public Product(){}
 
     public Product(String barcode, String name) {
         this.barcode = barcode;
         this.name = name;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 }
