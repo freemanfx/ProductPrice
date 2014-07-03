@@ -17,9 +17,6 @@ public class BeanProvider {
     private static ProductRepository productRepository;
 
     public static void init(Context newContext) {
-        if (context != null) {
-            throw new IllegalStateException("Already initialized!");
-        }
         context = newContext;
         ormDatabase();
     }
@@ -33,8 +30,8 @@ public class BeanProvider {
     }
 
     public static Database ormDatabase() {
-        if(ormDatabase == null) {
-            ormDatabase = new SQLiteAndroid(context,DATABASE_NAME,DB_VERSION);
+        if (ormDatabase == null) {
+            ormDatabase = new SQLiteAndroid(context, DATABASE_NAME, DB_VERSION);
             MappingSession.registerDatabase(ormDatabase);
         }
 

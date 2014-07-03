@@ -2,9 +2,11 @@ package ro.freemanfx.productprice.domain;
 
 import org.orman.mapper.Model;
 import org.orman.mapper.annotation.Entity;
+import org.orman.mapper.annotation.PrimaryKey;
 
 @Entity
 public class Product extends Model<Product> {
+    @PrimaryKey
     private String barcode;
     private String name;
 

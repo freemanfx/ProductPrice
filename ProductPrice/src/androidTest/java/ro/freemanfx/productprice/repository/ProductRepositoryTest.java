@@ -2,9 +2,11 @@ package ro.freemanfx.productprice.repository;
 
 import android.test.AndroidTestCase;
 
-import org.junit.Before;
-import org.junit.Test;
+import junit.framework.Assert;
+
+import org.orman.dbms.exception.QueryExecutionException;
 import org.orman.mapper.MappingSession;
+import org.orman.mapper.ModelQuery;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.domain.Product;
@@ -15,16 +17,17 @@ public class ProductRepositoryTest extends AndroidTestCase {
     private static final String COKE = "Coke";
     private ProductRepository productRepository;
 
-    @Before
-    public void setUp() {
-        BeanProvider.init(getContext());
 
+    public void setUp() throws Exception {
+        super.setUp();
+        BeanProvider.init(getContext());
         productRepository = BeanProvider.productRepository();
-        MappingSession.registerEntity(Product.class);
-        MappingSession.start();
+        if (!MappingSession.isSessionStarted()) {
+            MappingSession.registerEntity(Product.class);
+            MappingSession.start();
+        }
     }
 
-    @Test
     public void testSave() {
         Product aProduct = new Product(BARCODE, COKE);
 
@@ -32,6 +35,24 @@ public class ProductRepositoryTest extends AndroidTestCase {
 
         Product byBarCode = productRepository.findByBarCode(BARCODE);
         assertEquals(byBarCode.getBarcode(), BARCODE);
-        assertEquals(byBarCode.getName(),COKE);
+        assertEquals(byBarCode.getName(), COKE);
+    }
+
+    public void testBarcodeIsPrimaryKey() throws Exception {
+        Product aProduct = new Product(BARCODE, COKE);
+        Product anotherProduct = new Product(BARCODE, COKE);
+
+        try {
+            productRepository.save(aProduct);
+            productRepository.save(anotherProduct);
+            Assert.fail("Should throw exception !");
+        } catch (QueryExecutionException e) {
+            //Success
+        }
+    }
+
+    public void tearDown() throws Exception {
+        Product.execute(ModelQuery.delete().from(Product.class).getQuery());
+        super.tearDown();
     }
 }
