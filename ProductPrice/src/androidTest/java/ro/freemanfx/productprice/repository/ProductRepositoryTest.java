@@ -5,27 +5,20 @@ import android.test.AndroidTestCase;
 import junit.framework.Assert;
 
 import org.orman.dbms.exception.QueryExecutionException;
-import org.orman.mapper.MappingSession;
 import org.orman.mapper.ModelQuery;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.domain.Product;
 
 public class ProductRepositoryTest extends AndroidTestCase {
-
     private static final String BARCODE = "01234567890";
     private static final String COKE = "Coke";
     private ProductRepository productRepository;
-
 
     public void setUp() throws Exception {
         super.setUp();
         BeanProvider.init(getContext());
         productRepository = BeanProvider.productRepository();
-        if (!MappingSession.isSessionStarted()) {
-            MappingSession.registerEntity(Product.class);
-            MappingSession.start();
-        }
     }
 
     public void testSave() {

@@ -6,6 +6,7 @@ import org.orman.dbms.Database;
 import org.orman.dbms.sqliteandroid.SQLiteAndroid;
 import org.orman.mapper.MappingSession;
 
+import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.repository.ProductRepository;
 
 public class BeanProvider {
@@ -33,6 +34,10 @@ public class BeanProvider {
         if (ormDatabase == null) {
             ormDatabase = new SQLiteAndroid(context, DATABASE_NAME, DB_VERSION);
             MappingSession.registerDatabase(ormDatabase);
+            if (!MappingSession.isSessionStarted()) {
+                MappingSession.registerEntity(Product.class);
+                MappingSession.start();
+            }
         }
 
         return ormDatabase;
