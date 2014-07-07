@@ -16,14 +16,25 @@ public class ProductRepositoryTest extends AndroidTestCase {
     }
 
     public void testSave() throws Exception {
-        assertEquals(0, productRepository.count());
-
         Product product = new Product(NAME, BARCODE);
-        long result = productRepository.save(product);
-        Product byBarcode = productRepository.findByBarcode(BARCODE);
 
-        assertNotNull(byBarcode);
+        productRepository.save(product);
+
+        Product productFound = productRepository.findByBarcode(BARCODE);
+        assertEquals(productFound.getName(), NAME);
+        assertEquals(productFound.getBarcode(), BARCODE);
         assertEquals(1, productRepository.count());
+    }
+
+    public void testFindByBarCode() throws Exception {
+        Product product1 = new Product("Product 1", "101");
+        Product product2 = new Product("Product 2", "102");
+
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        Product byBarcode1 = productRepository.findByBarcode(product1.getBarcode());
+        assertEquals(byBarcode1.getBarcode(), product1.getBarcode());
     }
 
     @Override

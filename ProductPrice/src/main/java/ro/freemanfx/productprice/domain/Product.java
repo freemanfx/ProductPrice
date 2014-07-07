@@ -3,11 +3,10 @@ package ro.freemanfx.productprice.domain;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class Product {
+public class Product extends Entity {
     public static final String TABLE = "product";
     public static final String COLUMN_PRODUCT_NAME = "COLUMN_PRODUCT_NAME";
     public static final String COLUMN_PRODUCT_BARCODE = "COLUMN_PRODUCT_BARCODE";
-    private static final String COLUMN_ID = "_ID";
 
     private final String name;
     private final String barcode;
@@ -18,6 +17,7 @@ public class Product {
     }
 
     public Product(Cursor cursor) {
+        super(cursor);
         this.name = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_NAME));
         this.barcode = cursor.getString(cursor.getColumnIndex(COLUMN_PRODUCT_BARCODE));
     }

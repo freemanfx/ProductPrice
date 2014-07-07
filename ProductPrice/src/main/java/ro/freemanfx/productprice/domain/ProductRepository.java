@@ -8,14 +8,10 @@ import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
 
 public class ProductRepository extends AbstractRepository {
 
-    public long save(Product product) {
+    public void save(Product product) {
         SQLiteDatabase writableDb = getWritableDb();
-        try {
-            return writableDb.insert(getTableName(), null, product.getContentValues());
-        } finally {
-            writableDb.close();
-        }
-
+        writableDb.insert(getTableName(), null, product.getContentValues());
+        writableDb.close();
     }
 
     public Product findByBarcode(String barcode) {
