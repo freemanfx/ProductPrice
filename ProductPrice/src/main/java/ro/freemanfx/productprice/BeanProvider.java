@@ -3,6 +3,7 @@ package ro.freemanfx.productprice;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import ro.freemanfx.productprice.domain.PlaceRepository;
 import ro.freemanfx.productprice.domain.ProductRepository;
 import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
 
@@ -11,6 +12,7 @@ public class BeanProvider {
 
     private static DatabaseHelper databaseHelper;
     private static ProductRepository productRepository;
+    private static PlaceRepository placeRepository;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -35,5 +37,12 @@ public class BeanProvider {
             productRepository = new ProductRepository();
         }
         return productRepository;
+    }
+
+    public static PlaceRepository placeRepository() {
+        if (placeRepository == null) {
+            placeRepository = new PlaceRepository();
+        }
+        return placeRepository;
     }
 }

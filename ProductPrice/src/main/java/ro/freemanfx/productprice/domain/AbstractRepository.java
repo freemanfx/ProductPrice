@@ -12,10 +12,10 @@ import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
 
 public abstract class AbstractRepository<E extends Entity> {
 
-    public void save(E item) {
+    public void save(E entity) {
         SQLiteDatabase writableDb = getWritableDb();
-        Long id = writableDb.insert(getTableName(), null, item.getContentValues());
-        item.setId(id);
+        Long id = writableDb.insert(getTableName(), null, entity.getContentValues());
+        entity.setId(id);
         writableDb.close();
     }
 
@@ -23,7 +23,7 @@ public abstract class AbstractRepository<E extends Entity> {
         Cursor cursor = getReadableDb().query(getTableName(), null, null, null, null, null, null);
         List<E> list = new LinkedList<E>();
         while (cursor.moveToNext()) {
-            list.add(createItem(cursor));
+            list.add(createEntity(cursor));
         }
         return list;
     }
@@ -41,7 +41,7 @@ public abstract class AbstractRepository<E extends Entity> {
         return cursor.getCount();
     }
 
-    public abstract E createItem(Cursor cursor);
+    public abstract E createEntity(Cursor cursor);
 
     public abstract String getTableName();
 }

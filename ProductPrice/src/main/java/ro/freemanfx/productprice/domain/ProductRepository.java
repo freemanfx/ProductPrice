@@ -13,7 +13,7 @@ public class ProductRepository extends AbstractRepository<Product> {
     }
 
     @Override
-    public Product createItem(Cursor cursor) {
+    public Product createEntity(Cursor cursor) {
         return new Product(cursor);
     }
 

@@ -23,5 +23,9 @@ public abstract class Entity {
         this.id = id;
     }
 
+    public String getString(Cursor cursor, String column) {
+        return cursor.getString(cursor.getColumnIndex(column));
+    }
+
     public abstract ContentValues getContentValues();
 }

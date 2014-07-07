@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.domain.Product;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -19,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Product.getCreateTable());
+        db.execSQL(Place.getCreateTable());
     }
 
     @Override
