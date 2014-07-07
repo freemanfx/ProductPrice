@@ -1,6 +1,8 @@
 package ro.freemanfx.productprice.domain;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import static ro.freemanfx.productprice.BeanProvider.getReadableDb;
 import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
@@ -8,9 +10,10 @@ import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
 public abstract class AbstractRepository {
 
     public void deleteAll() {
-        getWritableDb().beginTransaction();
-        getWritableDb().delete(getTableName(), null, null);
-        getWritableDb().endTransaction();
+        SQLiteDatabase db = getWritableDb();
+        int count = db.delete(getTableName(), null, null);
+        Log.d("AbstractRepository", "Deleted " + count + " items");
+        db.close();
     }
 
     public int count() {

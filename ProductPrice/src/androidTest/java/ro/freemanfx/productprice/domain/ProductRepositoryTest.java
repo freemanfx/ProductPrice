@@ -20,7 +20,9 @@ public class ProductRepositoryTest extends AndroidTestCase {
 
         Product product = new Product(NAME, BARCODE);
         long result = productRepository.save(product);
+        Product byBarcode = productRepository.findByBarcode(BARCODE);
 
+        assertNotNull(byBarcode);
         assertEquals(1, productRepository.count());
     }
 

@@ -7,6 +7,7 @@ public class Product {
     public static final String TABLE = "product";
     public static final String COLUMN_PRODUCT_NAME = "COLUMN_PRODUCT_NAME";
     public static final String COLUMN_PRODUCT_BARCODE = "COLUMN_PRODUCT_BARCODE";
+    private static final String COLUMN_ID = "_ID";
 
     private final String name;
     private final String barcode;
@@ -23,9 +24,9 @@ public class Product {
 
     public static String getCreateTable() {
         return new StringBuilder("CREATE TABLE ").append(TABLE)
-                .append(" ( ")
+                .append(" (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, ")
                 .append(COLUMN_PRODUCT_NAME).append(" TEXT, ")
-                .append(COLUMN_PRODUCT_BARCODE).append(" TEXT PRIMARY KEY ")
+                .append(COLUMN_PRODUCT_BARCODE).append(" TEXT ")
                 .append(" )")
                 .toString();
     }
@@ -41,7 +42,7 @@ public class Product {
     public ContentValues getContentValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_PRODUCT_NAME, name);
-        contentValues.put(COLUMN_PRODUCT_BARCODE, name);
+        contentValues.put(COLUMN_PRODUCT_BARCODE, barcode);
         return contentValues;
     }
 }
