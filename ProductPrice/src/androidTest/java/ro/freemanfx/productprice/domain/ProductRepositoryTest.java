@@ -31,6 +31,15 @@ public class ProductRepositoryTest extends AndroidTestCase {
         assertEquals(productFound.getBarcode(), BARCODE);
     }
 
+    public void testCount() {
+        Product product1 = new Product("Product 1", BARCODE1);
+        Product product2 = new Product("Product 2", BARCODE2);
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        assertEquals(2, productRepository.count());
+    }
+
     public void testFindByBarCode() throws Exception {
         Product product1 = new Product("Product 1", BARCODE1);
         Product product2 = new Product("Product 2", BARCODE2);
