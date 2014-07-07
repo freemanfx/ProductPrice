@@ -14,7 +14,8 @@ public abstract class AbstractRepository<E extends Entity> {
 
     public void save(E item) {
         SQLiteDatabase writableDb = getWritableDb();
-        writableDb.insert(getTableName(), null, item.getContentValues());
+        Long id = writableDb.insert(getTableName(), null, item.getContentValues());
+        item.setId(id);
         writableDb.close();
     }
 

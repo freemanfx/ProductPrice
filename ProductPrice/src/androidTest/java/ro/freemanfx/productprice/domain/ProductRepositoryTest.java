@@ -23,11 +23,12 @@ public class ProductRepositoryTest extends AndroidTestCase {
         Product product = new Product(NAME, BARCODE);
 
         productRepository.save(product);
+        assertNotNull(product.getId());
 
         Product productFound = productRepository.findByBarcode(BARCODE);
+        assertNotNull(productFound.getId());
         assertEquals(productFound.getName(), NAME);
         assertEquals(productFound.getBarcode(), BARCODE);
-        assertEquals(1, productRepository.count());
     }
 
     public void testFindByBarCode() throws Exception {
