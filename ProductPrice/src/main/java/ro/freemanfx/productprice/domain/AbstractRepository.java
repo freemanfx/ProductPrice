@@ -4,10 +4,28 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static ro.freemanfx.productprice.BeanProvider.getReadableDb;
 import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
 
-public abstract class AbstractRepository {
+public abstract class AbstractRepository<E extends Entity> {
+
+    public void save(E item) {
+        SQLiteDatabase writableDb = getWritableDb();
+        writableDb.insert(getTableName(), null, item.getContentValues());
+        writableDb.close();
+    }
+
+    public List<E> findAll() {
+        Cursor cursor = getReadableDb().query(getTableName(), null, null, null, null, null, null);
+        List<E> list = new LinkedList<E>();
+        while (cursor.moveToNext()) {
+            list.add(createItem(cursor));
+        }
+        return list;
+    }
 
     public void deleteAll() {
         SQLiteDatabase db = getWritableDb();
@@ -21,6 +39,8 @@ public abstract class AbstractRepository {
         cursor.moveToFirst();
         return cursor.getCount();
     }
+
+    public abstract E createItem(Cursor cursor);
 
     public abstract String getTableName();
 }
