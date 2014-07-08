@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import ro.freemanfx.productprice.domain.PlaceRepository;
+import ro.freemanfx.productprice.domain.ProductPriceRepository;
 import ro.freemanfx.productprice.domain.ProductRepository;
 import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
 
@@ -13,6 +14,7 @@ public class BeanProvider {
     private static DatabaseHelper databaseHelper;
     private static ProductRepository productRepository;
     private static PlaceRepository placeRepository;
+    private static ProductPriceRepository productPriceRepository;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -44,5 +46,12 @@ public class BeanProvider {
             placeRepository = new PlaceRepository();
         }
         return placeRepository;
+    }
+
+    public static ProductPriceRepository productPriceRepository() {
+        if (productPriceRepository == null) {
+            productPriceRepository = new ProductPriceRepository();
+        }
+        return productPriceRepository;
     }
 }

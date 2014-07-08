@@ -6,11 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.domain.Product;
+import ro.freemanfx.productprice.domain.ProductPrice;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
+    public static final String DB_NAME = "productprice.db";
     private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "productprice.db";
+
     private SQLiteDatabase myWritableDb;
 
     public DatabaseHelper(Context context) {
@@ -21,6 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Product.getCreateTable());
         db.execSQL(Place.getCreateTable());
+        db.execSQL(ProductPrice.getCreateTable());
     }
 
     @Override

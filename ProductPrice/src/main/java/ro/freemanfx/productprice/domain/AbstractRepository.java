@@ -12,11 +12,12 @@ import static ro.freemanfx.productprice.BeanProvider.getWritableDb;
 
 public abstract class AbstractRepository<E extends Entity> {
 
-    public void save(E entity) {
+    public E save(E entity) {
         SQLiteDatabase writableDb = getWritableDb();
         Long id = writableDb.insert(getTableName(), null, entity.getContentValues());
         entity.setId(id);
         writableDb.close();
+        return entity;
     }
 
     public List<E> findAll() {
