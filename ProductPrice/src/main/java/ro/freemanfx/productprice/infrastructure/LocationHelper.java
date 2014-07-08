@@ -4,7 +4,7 @@ import android.location.Location;
 
 public class LocationHelper {
     private static final String MOCK_PROVIDER = "flp";
-    private static final String SPLIT_CHAR = "|";
+    private static final String SPLIT_CHAR = "\\|";
 
     public static Location parseLocationString(String locationString) {
         String[] split = locationString.split(SPLIT_CHAR);

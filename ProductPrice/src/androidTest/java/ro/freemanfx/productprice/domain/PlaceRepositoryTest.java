@@ -7,8 +7,8 @@ import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
 
 public class PlaceRepositoryTest extends AndroidTestCase {
-    private static final Location LOCATION = LocationHelper.parseLocationString("12.45665|42.56");
     private static final String HOME = "Home";
+    private static final Location LOCATION = LocationHelper.parseLocationString("12.45665|42.56");
 
     private PlaceRepository placeRepository;
 
