@@ -5,6 +5,7 @@ import android.test.AndroidTestCase;
 import java.util.List;
 
 import ro.freemanfx.productprice.BeanProvider;
+import ro.freemanfx.productprice.repository.ProductRepository;
 
 public class ProductRepositoryTest extends AndroidTestCase {
     private static final String BARCODE = "123456790123";

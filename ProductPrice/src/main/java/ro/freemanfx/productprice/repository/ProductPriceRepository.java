@@ -1,4 +1,4 @@
-package ro.freemanfx.productprice.domain;
+package ro.freemanfx.productprice.repository;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ro.freemanfx.productprice.BeanProvider;
+import ro.freemanfx.productprice.domain.Product;
+import ro.freemanfx.productprice.domain.ProductPrice;
+import ro.freemanfx.productprice.infrastructure.AbstractRepository;
 
 public class ProductPriceRepository extends AbstractRepository<ProductPrice> {
     @Override

@@ -1,8 +1,9 @@
-package ro.freemanfx.productprice.domain;
+package ro.freemanfx.productprice.testfixture;
 
 import android.location.Location;
 
 import ro.freemanfx.productprice.BeanProvider;
+import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
 
 public class PlaceTestFixture extends TestFixture {

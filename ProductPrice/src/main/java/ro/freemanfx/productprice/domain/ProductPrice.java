@@ -3,6 +3,8 @@ package ro.freemanfx.productprice.domain;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import ro.freemanfx.productprice.infrastructure.Entity;
+
 public class ProductPrice extends Entity {
     public static final String COLUMN_PRODUCT_ID = "COLUMN_PRODUCT_ID";
     public static final String COLUMN_PLACE_ID = "COLUMN_PLACE_ID";

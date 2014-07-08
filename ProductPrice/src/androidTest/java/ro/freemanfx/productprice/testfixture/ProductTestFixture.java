@@ -1,6 +1,7 @@
-package ro.freemanfx.productprice.domain;
+package ro.freemanfx.productprice.testfixture;
 
 import ro.freemanfx.productprice.BeanProvider;
+import ro.freemanfx.productprice.domain.Product;
 
 public class ProductTestFixture extends TestFixture {
     public static final String TEST_BARCODE = "01234567890123";

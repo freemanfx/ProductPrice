@@ -3,10 +3,10 @@ package ro.freemanfx.productprice;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import ro.freemanfx.productprice.domain.PlaceRepository;
-import ro.freemanfx.productprice.domain.ProductPriceRepository;
-import ro.freemanfx.productprice.domain.ProductRepository;
 import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
+import ro.freemanfx.productprice.repository.PlaceRepository;
+import ro.freemanfx.productprice.repository.ProductPriceRepository;
+import ro.freemanfx.productprice.repository.ProductRepository;
 
 public class BeanProvider {
     private static Context context;

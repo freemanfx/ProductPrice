@@ -6,6 +6,9 @@ import java.util.List;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
+import ro.freemanfx.productprice.repository.ProductPriceRepository;
+import ro.freemanfx.productprice.testfixture.PlaceTestFixture;
+import ro.freemanfx.productprice.testfixture.ProductTestFixture;
 
 import static ro.freemanfx.productprice.BeanProvider.placeRepository;
 import static ro.freemanfx.productprice.BeanProvider.productRepository;

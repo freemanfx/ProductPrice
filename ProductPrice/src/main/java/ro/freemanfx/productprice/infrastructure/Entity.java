@@ -1,4 +1,4 @@
-package ro.freemanfx.productprice.domain;
+package ro.freemanfx.productprice.infrastructure;
 
 import android.content.ContentValues;
 import android.database.Cursor;

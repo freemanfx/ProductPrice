@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.location.Location;
 
+import ro.freemanfx.productprice.infrastructure.Entity;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
 
 import static ro.freemanfx.productprice.infrastructure.LocationHelper.parseLocationString;

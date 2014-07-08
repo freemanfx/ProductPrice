@@ -5,6 +5,7 @@ import android.test.AndroidTestCase;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
+import ro.freemanfx.productprice.repository.PlaceRepository;
 
 public class PlaceRepositoryTest extends AndroidTestCase {
     private static final String HOME = "Home";

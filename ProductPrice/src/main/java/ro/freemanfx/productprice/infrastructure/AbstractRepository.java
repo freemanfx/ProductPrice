@@ -1,4 +1,4 @@
-package ro.freemanfx.productprice.domain;
+package ro.freemanfx.productprice.infrastructure;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
