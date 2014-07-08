@@ -23,5 +23,9 @@ public abstract class Entity {
         this.id = id;
     }
 
+    public boolean isPersisted() {
+        return id != null;
+    }
+
     public abstract ContentValues getContentValues();
 }

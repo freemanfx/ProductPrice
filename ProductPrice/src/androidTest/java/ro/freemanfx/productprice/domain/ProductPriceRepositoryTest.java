@@ -18,6 +18,7 @@ public class ProductPriceRepositoryTest extends AndroidTestCase {
 
     public static final String COKE_BARCODE = "125466448789";
     public static final String COKE = "Coke";
+    public static final double A_DOLLAR = 1.00D;
     ProductPriceRepository productPriceRepository;
 
     public void setUp() throws Exception {
@@ -31,11 +32,13 @@ public class ProductPriceRepositoryTest extends AndroidTestCase {
         Product aProduct = ProductTestFixture.save(ProductTestFixture.aProduct());
         Place aPlace = PlaceTestFixture.save(PlaceTestFixture.aPlace());
 
-        ProductPrice productPrice = new ProductPrice(aProduct, aPlace);
+        ProductPrice productPrice = new ProductPrice(aProduct, aPlace, A_DOLLAR);
         ProductPrice savedProductPrice = productPriceRepository.save(productPrice);
-
         assertNotNull(savedProductPrice.getId());
         assertEquals(productPriceRepository.count(), 1);
+
+        List<ProductPrice> byProduct = productPriceRepository.findByProduct(aProduct);
+        assertEquals(byProduct.get(0), productPrice);
     }
 
     public void testFindByProduct() {
@@ -45,9 +48,9 @@ public class ProductPriceRepositoryTest extends AndroidTestCase {
         Product coke = productRepository().save(new Product(COKE, COKE_BARCODE));
         Product rice = productRepository().save(new Product("SPRITE", "1245"));
 
-        ProductPrice cokeAtWalmart = productPriceRepository.save(new ProductPrice(coke, walmart));
-        ProductPrice cokeAtBestBuy = productPriceRepository.save(new ProductPrice(coke, bestBuy));
-        ProductPrice riceAtBestBuy = productPriceRepository.save(new ProductPrice(rice, bestBuy));
+        ProductPrice cokeAtWalmart = productPriceRepository.save(new ProductPrice(coke, walmart, 1.05D));
+        ProductPrice cokeAtBestBuy = productPriceRepository.save(new ProductPrice(coke, bestBuy, 1.10D));
+        ProductPrice riceAtBestBuy = productPriceRepository.save(new ProductPrice(rice, bestBuy, A_DOLLAR));
 
         List<ProductPrice> cokePrices = productPriceRepository.findByProduct(coke);
         assertEquals(cokePrices.size(), 2);
