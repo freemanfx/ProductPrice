@@ -7,6 +7,7 @@ import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
 import ro.freemanfx.productprice.repository.PlaceRepository;
 import ro.freemanfx.productprice.repository.ProductPriceRepository;
 import ro.freemanfx.productprice.repository.ProductRepository;
+import ro.freemanfx.productprice.service.ProductService;
 
 public class BeanProvider {
     private static Context context;
@@ -15,6 +16,7 @@ public class BeanProvider {
     private static ProductRepository productRepository;
     private static PlaceRepository placeRepository;
     private static ProductPriceRepository productPriceRepository;
+    private static ProductService productService;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -53,5 +55,13 @@ public class BeanProvider {
             productPriceRepository = new ProductPriceRepository();
         }
         return productPriceRepository;
+    }
+
+    public static ProductService productService() {
+        if (productService == null) {
+            productService = new ProductService();
+        }
+
+        return productService;
     }
 }
