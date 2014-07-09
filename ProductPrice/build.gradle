@@ -33,10 +33,11 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     compile 'com.jakewharton:butterknife:4.0.1'
-    compile 'com.google.zxing:core:2.2'
-    compile 'com.google.zxing:android-integration:2.2'
+    compile 'com.google.zxing:core:3.1.0'
+    compile 'com.google.zxing:android-integration:3.1.0'
     compile 'org.joda:joda-money:0.9.1'
     compile 'joda-time:joda-time:2.3'
+    compile 'com.netflix.rxjava:rxjava-core:0.5.4'
 
     //Test
     compile 'junit:junit:4.11'

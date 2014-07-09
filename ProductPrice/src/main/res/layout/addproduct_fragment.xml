@@ -18,30 +18,31 @@
         android:paddingLeft="@dimen/small_padding" />
 
     <EditText
-        android:layout_marginTop="@dimen/small_padding"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/small_padding"
         android:hint="Product name" />
 
     <EditText
-        android:layout_marginTop="@dimen/small_padding"
         android:id="@+id/place"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/small_padding"
         android:hint="Place" />
 
     <EditText
-        android:layout_marginTop="@dimen/small_padding"
         android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:hint="Price" />
+        android:layout_marginTop="@dimen/small_padding"
+        android:hint="Price"
+        android:numeric="decimal" />
 
     <Button
         android:id="@+id/add"
-        android:layout_marginTop="@dimen/input_height"
-        android:text="@string/Add"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height" />
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/input_height"
+        android:text="@string/Add" />
 </LinearLayout>
