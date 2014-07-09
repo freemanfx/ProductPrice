@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -23,24 +22,29 @@ public class MainFragment extends Fragment implements Constants {
     Button add;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
         ButterKnife.inject(this, view);
 
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainFragment.this.getActivity(),"Not implemented yet!", Toast.LENGTH_SHORT).show();
+                startScanFor(SCAN_INTENT_FIND);
             }
         });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ScanProductActivity.class);
-                startActivity(intent);
+                startScanFor(SCAN_INTENT_ADD);
             }
         });
         return view;
+    }
+
+    private void startScanFor(String scanIntent) {
+        Intent intent = new Intent(getActivity(), ScanProductActivity.class);
+        intent.putExtra(Constants.SCAN_INTENT, scanIntent);
+        startActivity(intent);
     }
 }
