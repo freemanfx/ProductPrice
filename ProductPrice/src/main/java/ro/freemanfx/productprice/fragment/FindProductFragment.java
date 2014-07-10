@@ -32,7 +32,7 @@ public class FindProductFragment extends ListFragment {
     }
 
     private void setTitleForProduct() {
-        Product product = BeanProvider.productRepository().findByBarcode(BARCODE);
+        Product product = BeanProvider.productRepository().findByBarcode(barcode);
         if (product != null) {
             getActivity().getActionBar().setTitle(product.getName());
         } else {
