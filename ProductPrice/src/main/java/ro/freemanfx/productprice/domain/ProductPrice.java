@@ -84,4 +84,12 @@ public class ProductPrice extends Entity {
     public Double getPrice() {
         return price;
     }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
 }

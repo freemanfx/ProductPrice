@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.R;
+import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
 
 import static ro.freemanfx.productprice.BeanProvider.productPriceRepository;
@@ -26,6 +28,16 @@ public class FindProductFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         barcode = getActivity().getIntent().getStringExtra(BARCODE);
+        setTitleForProduct();
+    }
+
+    private void setTitleForProduct() {
+        Product product = BeanProvider.productRepository().findByBarcode(BARCODE);
+        if (product != null) {
+            getActivity().getActionBar().setTitle(product.getName());
+        } else {
+            getActivity().getActionBar().setTitle("No records");
+        }
     }
 
     @Override
@@ -43,7 +55,7 @@ public class FindProductFragment extends ListFragment {
     private class ProductsAdapter extends ArrayAdapter<ProductPrice> {
         public ProductsAdapter(String barcode) {
             super(getActivity(), R.layout.product_price_list_item);
-            addProducts(barcode);
+            addProductPrices(barcode);
         }
 
         @Override
@@ -53,12 +65,16 @@ public class FindProductFragment extends ListFragment {
                 view = LayoutInflater.from(getContext()).inflate(R.layout.product_price_list_item, parent, false);
             }
             ProductPrice item = getItem(position);
-            TextView name = (TextView) view.findViewById(R.id.name);
-            name.setText(item.getPrice().toString());
+
+            TextView place = (TextView) view.findViewById(R.id.place);
+            place.setText(item.getPlace().getName());
+
+            TextView viewById = (TextView) view.findViewById(R.id.price);
+            viewById.setText(item.getPrice().toString());
             return view;
         }
 
-        private void addProducts(String barcode) {
+        private void addProductPrices(String barcode) {
             //TODO: make this run on background thread ( rxJava ? )
             List<ProductPrice> byProduct = productPriceRepository().findByProductBarcode(barcode);
             addAll(byProduct);

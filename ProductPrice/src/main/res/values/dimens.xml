@@ -2,4 +2,5 @@
 <resources>
     <dimen name="input_height">48dp</dimen>
     <dimen name="small_padding">16dp</dimen>
+    <dimen name="list_text_size">18dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package ro.freemanfx.productprice.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -32,6 +33,10 @@ public class ScanProductActivity extends SingleFragmentActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             String barcode = result.getContents();
+            if (!ScanUtil.validBarcode(barcode)) {
+                Toast.makeText(this, "Error while scanning the product or invalid format! Try again !", Toast.LENGTH_LONG).show();
+                finish();
+            }
             Intent intent = new Intent(this, getActivityToStartAfterScan());
             intent.putExtra(BARCODE, barcode);
             startActivity(intent);

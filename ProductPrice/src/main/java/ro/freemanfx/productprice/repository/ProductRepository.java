@@ -11,7 +11,9 @@ public class ProductRepository extends AbstractRepository<Product> {
 
     public Product findByBarcode(String barcode) {
         Cursor cursor = getReadableDb().query(getTableName(), null, Product.COLUMN_PRODUCT_BARCODE + "=?", new String[]{barcode}, null, null, null);
-        cursor.moveToFirst();
+        if (!cursor.moveToFirst()) {
+            return null;
+        }
         return new Product(cursor);
     }
 
