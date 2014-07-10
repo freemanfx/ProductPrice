@@ -1,7 +1,8 @@
 package ro.freemanfx.productprice.domain;
 
-import android.location.Location;
 import android.test.AndroidTestCase;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
@@ -9,7 +10,7 @@ import ro.freemanfx.productprice.repository.PlaceRepository;
 
 public class PlaceRepositoryTest extends AndroidTestCase {
     private static final String HOME = "Home";
-    private static final Location LOCATION = LocationHelper.parseLocationString("12.45665|42.56");
+    private static final LatLng TEST_LOCATION = LocationHelper.newLocation(12.45665, 42.56);
 
     private PlaceRepository placeRepository;
 
@@ -19,7 +20,7 @@ public class PlaceRepositoryTest extends AndroidTestCase {
     }
 
     public void testSave() throws Exception {
-        Place place = new Place(HOME, LOCATION);
+        Place place = new Place(HOME, TEST_LOCATION);
         placeRepository.save(place);
         assertNotNull(place.getId());
     }

@@ -2,6 +2,7 @@ package ro.freemanfx.productprice.domain;
 
 import android.test.AndroidTestCase;
 
+import java.util.Arrays;
 import java.util.List;
 
 import ro.freemanfx.productprice.BeanProvider;
@@ -12,7 +13,7 @@ import ro.freemanfx.productprice.testfixture.ProductTestFixture;
 
 import static ro.freemanfx.productprice.BeanProvider.placeRepository;
 import static ro.freemanfx.productprice.BeanProvider.productRepository;
-import static ro.freemanfx.productprice.infrastructure.LocationHelper.parseLocationString;
+import static ro.freemanfx.productprice.infrastructure.LocationHelper.newLocation;
 
 public class ProductPriceRepositoryTest extends AndroidTestCase {
 
@@ -37,13 +38,13 @@ public class ProductPriceRepositoryTest extends AndroidTestCase {
         assertNotNull(savedProductPrice.getId());
         assertEquals(productPriceRepository.count(), 1);
 
-        List<ProductPrice> byProduct = productPriceRepository.findByProduct(aProduct);
+        List<ProductPrice> byProduct = productPriceRepository.findByProductBarcode(aProduct.getBarcode());
         assertEquals(byProduct.get(0), productPrice);
     }
 
     public void testFindByProduct() {
-        Place walmart = placeRepository().save(new Place("WALMART", parseLocationString("10.11|12.11")));
-        Place bestBuy = placeRepository().save(new Place("BESTBUY", parseLocationString("12.11|44.55")));
+        Place walmart = placeRepository().save(new Place("WALMART", newLocation(10.11, 12.11)));
+        Place bestBuy = placeRepository().save(new Place("BESTBUY", newLocation(12.11, 44.55)));
 
         Product coke = productRepository().save(new Product(COKE, COKE_BARCODE));
         Product rice = productRepository().save(new Product("SPRITE", "1245"));
@@ -52,10 +53,9 @@ public class ProductPriceRepositoryTest extends AndroidTestCase {
         ProductPrice cokeAtBestBuy = productPriceRepository.save(new ProductPrice(coke, bestBuy, 1.10D));
         ProductPrice riceAtBestBuy = productPriceRepository.save(new ProductPrice(rice, bestBuy, A_DOLLAR));
 
-        List<ProductPrice> cokePrices = productPriceRepository.findByProduct(coke);
+        List<ProductPrice> cokePrices = productPriceRepository.findByProductBarcode(coke.getBarcode());
         assertEquals(cokePrices.size(), 2);
-        assertTrue(cokePrices.contains(cokeAtWalmart));
-        assertTrue(cokePrices.contains(cokeAtBestBuy));
+        assertTrue(cokePrices.containsAll(Arrays.asList(cokeAtWalmart, cokeAtBestBuy)));
     }
 
     public void tearDown() throws Exception {

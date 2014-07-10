@@ -7,29 +7,28 @@ import ro.freemanfx.productprice.infrastructure.Entity;
 
 public class ProductPrice extends Entity {
     public static final String TABLE = "PRODUCT_PRICE";
-
     public static final String COLUMN_PRODUCT_ID = "COLUMN_PRODUCT_ID";
     public static final String COLUMN_PLACE_ID = "COLUMN_PLACE_ID";
     public static final String COLUMN_PRICE = "COLUMN_PRICE";
 
-    private final Long productId;
-    private final Long placeId;
+    public static final String QUERY_PRODUCT_AND_PLACE_JOIN = "SELECT * FROM " + TABLE + " PP"
+            + " INNER JOIN " + Product.TABLE + " PR ON PP." + COLUMN_PRODUCT_ID + "=" + " PR." + COLUMN_ID
+            + " INNER JOIN " + Place.TABLE + " PL ON PP." + COLUMN_PLACE_ID + "=" + " PL." + COLUMN_ID
+            + " WHERE PR." + Product.COLUMN_PRODUCT_BARCODE + "=? ORDER BY " + COLUMN_PRICE + " ASC";
+    private final Product product;
+    private final Place place;
     private final Double price;
 
-    public ProductPrice(Long productId, Long placeId, Double price) {
-        this.productId = productId;
-        this.placeId = placeId;
+    public ProductPrice(Product product, Place place, Double price) {
+        this.product = product;
+        this.place = place;
         this.price = price;
-    }
-
-    public ProductPrice(Product aProduct, Place aPlace, Double price) {
-        this(aProduct.getId(), aPlace.getId(), price);
     }
 
     public ProductPrice(Cursor cursor) {
         super(cursor);
-        this.productId = cursor.getLong(cursor.getColumnIndex(COLUMN_PRODUCT_ID));
-        this.placeId = cursor.getLong(cursor.getColumnIndex(COLUMN_PLACE_ID));
+        this.product = productFromCursor(cursor);
+        this.place = placeFromCursor(cursor);
         this.price = cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE));
     }
 
@@ -43,11 +42,19 @@ public class ProductPrice extends Entity {
                 .toString();
     }
 
+    private Place placeFromCursor(Cursor cursor) {
+        return new Place(cursor);
+    }
+
+    private Product productFromCursor(Cursor cursor) {
+        return new Product(cursor);
+    }
+
     @Override
     public ContentValues getContentValues() {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_PRODUCT_ID, productId);
-        contentValues.put(COLUMN_PLACE_ID, placeId);
+        contentValues.put(COLUMN_PRODUCT_ID, product.getId());
+        contentValues.put(COLUMN_PLACE_ID, place.getId());
         contentValues.put(COLUMN_PRICE, price);
         return contentValues;
     }
@@ -59,17 +66,17 @@ public class ProductPrice extends Entity {
 
         ProductPrice that = (ProductPrice) o;
 
-        if (!placeId.equals(that.placeId)) return false;
+        if (!place.equals(that.place)) return false;
         if (!price.equals(that.price)) return false;
-        if (!productId.equals(that.productId)) return false;
+        if (!product.equals(that.product)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = productId.hashCode();
-        result = 31 * result + placeId.hashCode();
+        int result = product.hashCode();
+        result = 31 * result + place.hashCode();
         result = 31 * result + price.hashCode();
         return result;
     }

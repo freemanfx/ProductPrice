@@ -45,7 +45,7 @@ public class AddProductFragment extends Fragment implements Constants {
             return;
         }
 
-        Place place = new Place("Home", LocationHelper.parseLocationString("10.22|22.22"));
+        Place place = new Place("Home", LocationHelper.newLocation(10.22, 22.22));
         BeanProvider.productService().addProduct(new Product(name.getText().toString(), barcode.getText().toString()), place, Double.parseDouble(price.getText().toString()));
         getActivity().finish();
     }

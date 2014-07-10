@@ -13,11 +13,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
 
 import static ro.freemanfx.productprice.BeanProvider.productPriceRepository;
-import static ro.freemanfx.productprice.BeanProvider.productRepository;
 import static ro.freemanfx.productprice.Constants.BARCODE;
 
 public class FindProductFragment extends ListFragment {
@@ -62,8 +60,7 @@ public class FindProductFragment extends ListFragment {
 
         private void addProducts(String barcode) {
             //TODO: make this run on background thread ( rxJava ? )
-            Product product = productRepository().findByBarcode(barcode);
-            List<ProductPrice> byProduct = productPriceRepository().findByProduct(product);
+            List<ProductPrice> byProduct = productPriceRepository().findByProductBarcode(barcode);
             addAll(byProduct);
             notifyDataSetChanged();
         }

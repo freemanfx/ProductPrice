@@ -47,4 +47,24 @@ public class Product extends Entity {
         contentValues.put(COLUMN_PRODUCT_BARCODE, barcode);
         return contentValues;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!barcode.equals(product.barcode)) return false;
+        if (!name.equals(product.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + barcode.hashCode();
+        return result;
+    }
 }

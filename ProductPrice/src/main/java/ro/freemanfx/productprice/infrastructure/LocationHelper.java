@@ -1,20 +1,20 @@
 package ro.freemanfx.productprice.infrastructure;
 
-import android.location.Location;
+import com.google.android.gms.maps.model.LatLng;
 
 public class LocationHelper {
-    private static final String MOCK_PROVIDER = "flp";
-    private static final String SPLIT_CHAR = "\\|";
+    private static final String SPLIT_CHAR = "-";
 
-    public static Location parseLocationString(String locationString) {
+    public static LatLng parseLocationString(String locationString) {
         String[] split = locationString.split(SPLIT_CHAR);
-        Location location = new Location(MOCK_PROVIDER);
-        location.setLatitude(Double.parseDouble(split[0]));
-        location.setLongitude(Double.parseDouble(split[1]));
-        return location;
+        return newLocation(Double.parseDouble(split[0]), Double.parseDouble(split[1]));
     }
 
-    public static String encodeLocation(Location location) {
-        return String.valueOf(location.getLatitude()) + SPLIT_CHAR + String.valueOf(location.getLongitude());
+    public static String encodeLocation(LatLng location) {
+        return String.valueOf(location.latitude) + SPLIT_CHAR + String.valueOf(location.longitude);
+    }
+
+    public static LatLng newLocation(double latitude, double longitude) {
+        return new LatLng(latitude, longitude);
     }
 }

@@ -1,13 +1,13 @@
 package ro.freemanfx.productprice.testfixture;
 
-import android.location.Location;
+import com.google.android.gms.maps.model.LatLng;
 
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
 
 public class PlaceTestFixture extends TestFixture {
-    private static final Location TEST_LOCATION = LocationHelper.parseLocationString("12.334455|44.221133");
+    private static final LatLng TEST_LOCATION = LocationHelper.newLocation(12.33445544, 12.221133);
 
     public static Place aPlace() {
         return new Place(TEST_NAME, TEST_LOCATION);
