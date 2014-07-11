@@ -27,7 +27,7 @@ public class MapDisplay extends SupportMapFragment {
     public void onResume() {
         super.onResume();
         map = getMap();
-
+        map.setMyLocationEnabled(true);
         String barcode = getActivity().getIntent().getStringExtra(Constants.BARCODE);
         List<ProductPrice> prices = productPriceRepository().findByProductBarcode(barcode);
         for (ProductPrice productPrice : prices) {
