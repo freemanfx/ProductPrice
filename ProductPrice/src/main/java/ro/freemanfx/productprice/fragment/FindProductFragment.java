@@ -28,16 +28,17 @@ public class FindProductFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         barcode = getActivity().getIntent().getStringExtra(BARCODE);
-        setTitleForProduct();
+        Product product = BeanProvider.productRepository().findByBarcode(barcode);
+        if (product == null) {
+            Toast.makeText(getActivity(), "There are no records of this product!", Toast.LENGTH_LONG);
+            getActivity().finish();
+        } else {
+            setTitleForProduct(product.getName());
+        }
     }
 
-    private void setTitleForProduct() {
-        Product product = BeanProvider.productRepository().findByBarcode(barcode);
-        if (product != null) {
-            getActivity().getActionBar().setTitle(product.getName());
-        } else {
-            getActivity().getActionBar().setTitle("No records");
-        }
+    private void setTitleForProduct(String title) {
+        getActivity().getActionBar().setTitle(title);
     }
 
     @Override
