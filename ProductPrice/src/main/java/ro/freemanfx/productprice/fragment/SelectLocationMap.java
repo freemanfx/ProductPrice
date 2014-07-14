@@ -11,7 +11,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class SelectLocationMap extends SupportMapFragment implements GoogleMap.OnMyLocationChangeListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
     private GoogleMap map;
-    private MarkerOptions marker;
+    private Marker marker;
 
     @Override
     public void onResume() {
@@ -36,11 +36,16 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
     @Override
     public void onMyLocationChange(Location location) {
         if (marker == null) {
-            marker = new MarkerOptions()
-                    .draggable(true)
+            MarkerOptions markerOptions = createDraggableMarker()
                     .position(new LatLng(location.getLatitude(), location.getLongitude()));
-            map.addMarker(marker);
+            marker = map.addMarker(markerOptions);
+            map.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
         }
+    }
+
+    private MarkerOptions createDraggableMarker() {
+        return new MarkerOptions()
+                .draggable(true);
     }
 
     @Override
@@ -69,6 +74,7 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
     }
 
     private void moveMarker(LatLng latLng) {
-        marker.position(latLng);
+        marker.setPosition(latLng);
+        map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 }
