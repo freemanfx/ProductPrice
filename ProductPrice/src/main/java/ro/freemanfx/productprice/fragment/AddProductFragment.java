@@ -1,5 +1,6 @@
 package ro.freemanfx.productprice.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import butterknife.OnClick;
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
+import ro.freemanfx.productprice.activity.SelectLocationActivity;
 import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.infrastructure.LocationHelper;
@@ -36,7 +38,20 @@ public class AddProductFragment extends Fragment implements Constants {
 
         String barcodeString = getActivity().getIntent().getStringExtra(BARCODE);
         barcode.setText(barcodeString);
+
         return view;
+    }
+
+    @OnClick(R.id.select_location_on_map)
+    public void selectLocationOnMap() {
+        Intent intent = new Intent(getActivity(), SelectLocationActivity.class);
+        startActivityForResult(intent, Constants.SELECT_LOCATION);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @OnClick(R.id.add)

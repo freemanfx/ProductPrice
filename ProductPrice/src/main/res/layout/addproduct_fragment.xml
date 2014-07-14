@@ -24,12 +24,28 @@
         android:layout_marginTop="@dimen/small_padding"
         android:hint="Product name" />
 
-    <EditText
-        android:id="@+id/place"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/small_padding"
-        android:hint="Place" />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:layout_toLeftOf="@+id/select_location_on_map"
+            android:hint="Place" />
+
+        <ImageButton
+            android:id="@+id/select_location_on_map"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:src="@android:drawable/ic_dialog_map" />
+    </RelativeLayout>
+
 
     <EditText
         android:id="@+id/price"
