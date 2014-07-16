@@ -6,19 +6,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.SelectLocationActivity;
-import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.domain.Product;
-import ro.freemanfx.productprice.infrastructure.LocationHelper;
 
 public class AddProductFragment extends Fragment implements Constants {
     @InjectView(R.id.name)
@@ -30,6 +30,8 @@ public class AddProductFragment extends Fragment implements Constants {
     @InjectView(R.id.price)
     TextView price;
 
+    @InjectView(R.id.place)
+    EditText place;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +52,8 @@ public class AddProductFragment extends Fragment implements Constants {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        place.setText(AppContext.getPlace().getName());
         super.onActivityResult(requestCode, resultCode, data);
-
     }
 
     @OnClick(R.id.add)
@@ -59,9 +61,9 @@ public class AddProductFragment extends Fragment implements Constants {
         if (!validInput()) {
             return;
         }
-
-        Place place = new Place("Home", LocationHelper.newLocation(10.22, 22.22));
-        BeanProvider.productService().addProduct(new Product(name.getText().toString(), barcode.getText().toString()), place, Double.parseDouble(price.getText().toString()));
+        Product product = new Product(name.getText().toString(), barcode.getText().toString());
+        double price = Double.parseDouble(this.price.getText().toString());
+        BeanProvider.productService().addProduct(product, AppContext.getPlace(), price);
         getActivity().finish();
     }
 
@@ -82,6 +84,11 @@ public class AddProductFragment extends Fragment implements Constants {
 
         if (invalidString(barcodeString)) {
             Toast.makeText(getActivity(), "Barcode is empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (AppContext.getPlace() == null) {
+            Toast.makeText(getActivity(), "Please select a place!", Toast.LENGTH_SHORT).show();
             return false;
         }
 

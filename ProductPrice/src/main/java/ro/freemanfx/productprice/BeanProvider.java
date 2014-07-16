@@ -61,7 +61,6 @@ public class BeanProvider {
         if (productService == null) {
             productService = new ProductService();
         }
-
         return productService;
     }
 }

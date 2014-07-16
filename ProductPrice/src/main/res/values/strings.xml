@@ -3,4 +3,6 @@
     <string name="find_by_barcode">Find by barcode</string>
     <string name="Add">Add</string>
     <string name="show_on_map">Show on Map</string>
+    <string name="OK">OK</string>
+    <string name="enter_place_name">Enter place name</string>
 </resources>
