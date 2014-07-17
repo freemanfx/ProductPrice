@@ -101,11 +101,11 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
         if (existingPlace == null) {
             showInfoWindowForNewPlace(marker);
         } else {
-            showInfoWindowForExistingPlace(existingPlace, marker);
+            showInfoWindowForExistingPlace(existingPlace);
         }
     }
 
-    private void showInfoWindowForExistingPlace(final Place existingPlace, Marker marker) {
+    private void showInfoWindowForExistingPlace(final Place existingPlace) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setTitle(getString(R.string.Select_this_place))
                 .setMessage(existingPlace.getName())
