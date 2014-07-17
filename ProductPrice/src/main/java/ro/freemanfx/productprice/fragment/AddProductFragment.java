@@ -1,12 +1,12 @@
 package ro.freemanfx.productprice.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +31,7 @@ public class AddProductFragment extends Fragment implements Constants {
     TextView price;
 
     @InjectView(R.id.place)
-    EditText place;
+    TextView place;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +41,16 @@ public class AddProductFragment extends Fragment implements Constants {
         String barcodeString = getActivity().getIntent().getStringExtra(BARCODE);
         barcode.setText(barcodeString);
 
+        setProductNameIfExists(barcodeString);
         return view;
+    }
+
+    private void setProductNameIfExists(String barcodeString) {
+        Product byBarcode = BeanProvider.productRepository().findByBarcode(barcodeString);
+        if (byBarcode != null) {
+            name.setText(byBarcode.getName());
+            name.setEnabled(false);
+        }
     }
 
     @OnClick(R.id.select_location_on_map)
@@ -52,7 +61,9 @@ public class AddProductFragment extends Fragment implements Constants {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        place.setText(AppContext.getPlace().getName());
+        if (resultCode == Activity.RESULT_OK) {
+            place.setText(AppContext.getPlace().getName());
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -98,5 +109,4 @@ public class AddProductFragment extends Fragment implements Constants {
     private boolean invalidString(String nameString) {
         return nameString == null || nameString.isEmpty();
     }
-
 }

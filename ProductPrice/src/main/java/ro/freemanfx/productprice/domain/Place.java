@@ -73,4 +73,9 @@ public class Place extends Entity {
         result = 31 * result + location.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
