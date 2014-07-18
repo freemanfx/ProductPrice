@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,11 +45,6 @@ public class FindProductFragment extends ListFragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setListAdapter(new ProductsAdapter(barcode));
         return view;
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(getActivity(), "Click on " + position, Toast.LENGTH_SHORT).show();
     }
 
     private class ProductsAdapter extends ArrayAdapter<ProductPrice> {

@@ -15,30 +15,28 @@
         android:layout_height="@dimen/input_height"
         android:gravity="center_vertical"
         android:hint="1234567890123"
-        android:paddingLeft="@dimen/small_padding" />
+        android:paddingLeft="@dimen/small_padding"
+        android:textSize="18dp" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/small_padding"
         android:hint="Product name" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp">
 
-
         <TextView
             android:id="@+id/place"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/input_height"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="@dimen/small_padding"
-            android:layout_marginTop="@dimen/small_padding"
             android:layout_toLeftOf="@+id/select_location_on_map"
+            android:gravity="center_vertical"
             android:hint="Select a place on the map"
+            android:paddingLeft="16dp"
             android:textSize="18dp" />
 
         <ImageButton
@@ -54,7 +52,6 @@
         android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/small_padding"
         android:hint="Price"
         android:numeric="decimal" />
 

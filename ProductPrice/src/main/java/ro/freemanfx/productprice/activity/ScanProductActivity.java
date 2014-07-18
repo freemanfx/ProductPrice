@@ -1,5 +1,6 @@
 package ro.freemanfx.productprice.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -31,15 +32,19 @@ public class ScanProductActivity extends SingleFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
+        if (resultCode == Activity.RESULT_OK) {
             String barcode = result.getContents();
             if (!ScanUtil.validBarcode(barcode)) {
-                Toast.makeText(this, "Error while scanning the product or invalid format! Try again !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Error while scanning the product or invalid format! Try again !", Toast.LENGTH_SHORT).show();
                 finish();
+                return;
             }
             Intent intent = new Intent(this, getActivityToStartAfterScan());
             intent.putExtra(BARCODE, barcode);
             startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "No product was scanned!", Toast.LENGTH_SHORT).show();
             finish();
         }
     }

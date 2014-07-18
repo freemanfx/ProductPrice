@@ -24,12 +24,10 @@ public class MapDisplay extends SupportMapFragment {
         String barcode = getActivity().getIntent().getStringExtra(Constants.BARCODE);
         List<ProductPrice> prices = productPriceRepository().findByProductBarcode(barcode);
         for (ProductPrice productPrice : prices) {
-            map.addMarker(
-                    new MarkerOptions()
-                            .position(productPrice.getPlace().getLocation())
-                            .title(productPrice.getPrice().toString())
-                            .snippet(productPrice.getPlace().getName())
-            );
+            map.addMarker(new MarkerOptions()
+                    .position(productPrice.getPlace().getLocation())
+                    .title(productPrice.getPrice().toString())
+                    .snippet(productPrice.getPlace().getName()));
         }
     }
 }
