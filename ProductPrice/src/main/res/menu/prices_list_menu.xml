@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/show_on_map"
         android:icon="@android:drawable/ic_dialog_map"
-        android:title="@string/show_on_map"
-        app:showAsAction="always" />
+        android:showAsAction="always"
+        android:title="@string/show_on_map" />
 </menu>

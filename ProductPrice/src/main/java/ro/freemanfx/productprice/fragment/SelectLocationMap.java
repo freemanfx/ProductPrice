@@ -20,14 +20,16 @@ import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.domain.Place;
+import rx.functions.Action1;
 
 import static android.widget.LinearLayout.LayoutParams;
 import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static com.google.android.gms.maps.CameraUpdateFactory.newLatLng;
 import static com.google.android.gms.maps.model.BitmapDescriptorFactory.HUE_GREEN;
 import static com.google.android.gms.maps.model.BitmapDescriptorFactory.defaultMarker;
+import static ro.freemanfx.productprice.BeanProvider.locationProvider;
 
-public class SelectLocationMap extends SupportMapFragment implements GoogleMap.OnMyLocationChangeListener, GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
+public class SelectLocationMap extends SupportMapFragment implements GoogleMap.OnMarkerDragListener, GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap map;
     private Marker marker;
     private Map<String, Place> markerIdToPlaces = new HashMap<String, Place>();
@@ -42,10 +44,17 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
         if (map == null) {
             map = getMap();
             map.setMyLocationEnabled(true);
-            map.setOnMyLocationChangeListener(this);
             map.setOnMarkerDragListener(this);
             map.setOnMapLongClickListener(this);
             map.setOnInfoWindowClickListener(this);
+            locationProvider().getLastKnownLocation().subscribe(new Action1<Location>() {
+                @Override
+                public void call(Location location) {
+                    LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+                    addMarkerAt(position);
+                    map.animateCamera(newLatLng(position));
+                }
+            });
         }
 
         addExistingPlaces();
@@ -66,13 +75,6 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
                 .snippet(getString(R.string.touch_to_select_place))
                 .icon(defaultMarker(HUE_GREEN))
                 .position(place.getLocation());
-    }
-
-    @Override
-    public void onMyLocationChange(Location location) {
-        LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-        addMarkerAt(position);
-        map.animateCamera(newLatLng(position));
     }
 
     @Override
