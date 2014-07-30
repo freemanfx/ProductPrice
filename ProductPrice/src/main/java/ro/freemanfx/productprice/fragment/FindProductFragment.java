@@ -61,11 +61,11 @@ public class FindProductFragment extends ListFragment {
             }
             ProductPrice item = getItem(position);
 
-            TextView place = (TextView) view.findViewById(R.id.place);
-            place.setText(item.getPlace().getName());
+            TextView placeText = (TextView) view.findViewById(R.id.place);
+            placeText.setText(item.getPlace().getName());
 
-            TextView viewById = (TextView) view.findViewById(R.id.price);
-            viewById.setText(item.getPrice().toString());
+            TextView priceText = (TextView) view.findViewById(R.id.price);
+            priceText.setText(item.getPrice().toString());
             return view;
         }
 

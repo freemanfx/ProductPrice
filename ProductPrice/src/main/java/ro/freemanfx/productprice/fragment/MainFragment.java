@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.ScanProductActivity;
@@ -36,6 +37,7 @@ public class MainFragment extends Fragment implements Constants {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppContext.setPlace(null);
                 startScanFor(SCAN_INTENT_ADD);
             }
         });
