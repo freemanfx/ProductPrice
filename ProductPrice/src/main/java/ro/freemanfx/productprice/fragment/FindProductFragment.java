@@ -15,8 +15,9 @@ import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
+import rx.functions.Action1;
 
-import static ro.freemanfx.productprice.BeanProvider.productPriceRepository;
+import static ro.freemanfx.productprice.BeanProvider.productService;
 import static ro.freemanfx.productprice.Constants.BARCODE;
 
 public class FindProductFragment extends ListFragment {
@@ -70,10 +71,14 @@ public class FindProductFragment extends ListFragment {
         }
 
         private void addProductPrices(String barcode) {
-            //TODO: make this run on background thread ( rxJava ? )
-            List<ProductPrice> byProduct = productPriceRepository().findByProductBarcode(barcode);
-            addAll(byProduct);
-            notifyDataSetChanged();
+            productService().findByBarCode(barcode)
+                    .subscribe(new Action1<List<ProductPrice>>() {
+                        @Override
+                        public void call(List<ProductPrice> productPrices) {
+                            addAll(productPrices);
+                            notifyDataSetChanged();
+                        }
+                    });
         }
     }
 }
