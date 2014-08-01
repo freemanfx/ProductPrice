@@ -38,6 +38,22 @@ dependencies {
     compile 'joda-time:joda-time:2.3'
     compile 'com.netflix.rxjava:rxjava-android:0.18.4'
     compile 'pl.charmas.android:android-reactive-location:0.2@aar'
+    //Google App Engine
+    compile 'com.appspot.wise_logic_658:productprice:v1-1.19.0-SNAPSHOT'
+    compile 'com.google.api-client:google-api-client-android2:1.10.0-beta'
+
+    // Android extensions for Google HTTP Client.
+    compile(group: 'com.google.http-client', name: 'google-http-client-android',
+            version: '1.17.0-rc') {
+        exclude(group: 'com.google.android', module: 'android')
+    }
+
+    compile(group: 'com.google.http-client', name: 'google-http-client-gson', version: '1.18.0-rc') {
+        exclude(group: 'com.google.android', module: 'android')
+    }
+
+    // This is used by the Google HTTP client library.
+    //  compile(group: 'com.google.guava', name: 'guava', version: '14.0.+')
 
     //Test
     compile 'junit:junit:4.11'

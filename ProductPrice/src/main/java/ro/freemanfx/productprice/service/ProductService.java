@@ -12,8 +12,9 @@ import static ro.freemanfx.productprice.BeanProvider.placeRepository;
 import static ro.freemanfx.productprice.BeanProvider.productPriceRepository;
 import static ro.freemanfx.productprice.BeanProvider.productRepository;
 
-public class ProductService {
+public class ProductService implements IProductService {
 
+    @Override
     public void addProduct(Product product, Place place, Double price) {
         saveProductIfNeeded(product);
         savePlaceIfNeeded(place);
@@ -22,6 +23,7 @@ public class ProductService {
         productPriceRepository().save(productPrice);
     }
 
+    @Override
     public Observable<List<ProductPrice>> findByBarCode(final String barcode) {
         return Observable.create(new Observable.OnSubscribe<List<ProductPrice>>() {
             @Override
