@@ -29,17 +29,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
     compile 'com.google.android.gms:play-services:4.4.52'
 
-    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-
     compile 'com.jakewharton:butterknife:4.0.1'
     compile 'com.google.zxing:core:3.1.0'
     compile 'com.google.zxing:android-integration:3.1.0'
-    compile 'org.joda:joda-money:0.9.1'
-    compile 'joda-time:joda-time:2.3'
     compile 'com.netflix.rxjava:rxjava-android:0.18.4'
     compile 'pl.charmas.android:android-reactive-location:0.2@aar'
     //Google App Engine
-    compile 'com.appspot.wise_logic_658:productprice:v1-1.19.0-SNAPSHOT'
+    compile(group: 'com.appspot.wise_logic_658', name: 'productprice', version: 'v1-1.19.0-SNAPSHOT'){
+        exclude(group: 'com.google.guava')
+    }
     compile 'com.google.api-client:google-api-client-android2:1.10.0-beta'
 
     // Android extensions for Google HTTP Client.
@@ -54,7 +52,4 @@ dependencies {
 
     // This is used by the Google HTTP client library.
     //  compile(group: 'com.google.guava', name: 'guava', version: '14.0.+')
-
-    //Test
-    compile 'junit:junit:4.11'
 }
