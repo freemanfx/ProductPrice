@@ -20,6 +20,8 @@ import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.SelectLocationActivity;
 import ro.freemanfx.productprice.domain.Product;
 
+import static ro.freemanfx.productprice.BeanProvider.productService;
+
 public class AddProductFragment extends Fragment implements Constants {
     @InjectView(R.id.name)
     TextView name;
@@ -74,7 +76,9 @@ public class AddProductFragment extends Fragment implements Constants {
         }
         Product product = new Product(name.getText().toString(), barcode.getText().toString());
         double price = Double.parseDouble(this.price.getText().toString());
-        BeanProvider.productService().addProduct(product, AppContext.getPlace(), price);
+        productService()
+                .addProduct(product, AppContext.getPlace(), price)
+                .subscribe();
         getActivity().finish();
     }
 

@@ -7,20 +7,26 @@ import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
 import rx.Observable;
 import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 import static ro.freemanfx.productprice.BeanProvider.placeRepository;
 import static ro.freemanfx.productprice.BeanProvider.productPriceRepository;
 import static ro.freemanfx.productprice.BeanProvider.productRepository;
 
+//TODO: probably should get rid of this to stop maintaining it
 public class ProductService implements IProductService {
 
     @Override
-    public void addProduct(Product product, Place place, Double price) {
-        saveProductIfNeeded(product);
-        savePlaceIfNeeded(place);
-
-        ProductPrice productPrice = new ProductPrice(product, place, price);
-        productPriceRepository().save(productPrice);
+    public Observable<String> addProduct(final Product product, final Place place, final Double price) {
+        return Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                saveProductIfNeeded(product);
+                savePlaceIfNeeded(place);
+                ProductPrice productPrice = new ProductPrice(product, place, price);
+                productPriceRepository().save(productPrice);
+            }
+        }).subscribeOn(Schedulers.io());
     }
 
     @Override

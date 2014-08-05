@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import ro.freemanfx.productprice.BeanProvider;
+import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
@@ -19,6 +19,7 @@ import rx.functions.Action1;
 
 import static ro.freemanfx.productprice.BeanProvider.productService;
 import static ro.freemanfx.productprice.Constants.BARCODE;
+import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
 public class FindProductFragment extends ListFragment {
 
@@ -28,13 +29,6 @@ public class FindProductFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         barcode = getActivity().getIntent().getStringExtra(BARCODE);
-        Product product = BeanProvider.productRepository().findByBarcode(barcode);
-        if (product == null) {
-            Toast.makeText(getActivity(), "There are no records of this product!", Toast.LENGTH_LONG);
-            getActivity().finish();
-        } else {
-            setTitleForProduct(product.getName());
-        }
     }
 
     private void setTitleForProduct(String title) {
@@ -72,9 +66,21 @@ public class FindProductFragment extends ListFragment {
 
         private void addProductPrices(String barcode) {
             productService().findByBarCode(barcode)
+                    .doOnError(new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .observeOn(mainThread())
                     .subscribe(new Action1<List<ProductPrice>>() {
                         @Override
                         public void call(List<ProductPrice> productPrices) {
+                            AppContext.setProductPrices(productPrices);
+
+                            Product product = productPrices.get(0).getProduct();
+                            setTitleForProduct(product.getName());
+
                             addAll(productPrices);
                             notifyDataSetChanged();
                         }

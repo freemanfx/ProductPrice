@@ -1,22 +1,30 @@
 package ro.freemanfx.productprice.service;
 
 import com.appspot.wise_logic_658.productprice.Productprice;
+import com.appspot.wise_logic_658.productprice.model.ProductPriceCollection;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.gson.GsonFactory;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import ro.freemanfx.productprice.domain.Place;
 import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
 import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
+
+import static rx.Observable.OnSubscribe;
+import static rx.Observable.create;
 
 public class ProductServiceGAE implements IProductService {
     @Override
-    public void addProduct(Product product, Place place, Double price) {
+    public Observable<String> addProduct(Product product, Place place, Double price) {
         Productprice.Builder builder = new Productprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null);
-        Productprice service = builder.build();
+        final Productprice service = builder.build();
 
         com.appspot.wise_logic_658.productprice.model.Product productTo = new com.appspot.wise_logic_658.productprice.model.Product();
         productTo.setBarcode(product.getBarcode());
@@ -27,20 +35,54 @@ public class ProductServiceGAE implements IProductService {
         placeTo.setLatitude(place.getLocation().latitude);
         placeTo.setLongitude(place.getLocation().longitude);
 
-        com.appspot.wise_logic_658.productprice.model.ProductPrice data = new com.appspot.wise_logic_658.productprice.model.ProductPrice();
+        final com.appspot.wise_logic_658.productprice.model.ProductPrice data = new com.appspot.wise_logic_658.productprice.model.ProductPrice();
         data.setPrice(price);
         data.setProduct(productTo);
         data.setPlace(placeTo);
 
-        try {
-            service.add(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return
+                create(new OnSubscribe<String>() {
+                    @Override
+                    public void call(Subscriber<? super String> subscriber) {
+                        try {
+                            Void result = service.add(data).execute();
+                            subscriber.onNext(result.toString());
+                            subscriber.onCompleted();
+                        } catch (IOException e) {
+                            subscriber.onError(e);
+                        }
+                    }
+                }).subscribeOn(Schedulers.io());
     }
 
     @Override
-    public Observable<List<ProductPrice>> findByBarCode(String barcode) {
-        return null;
+    public Observable<List<ProductPrice>> findByBarCode(final String barcode) {
+        return Observable.create(new OnSubscribe<List<ProductPrice>>() {
+            @Override
+            public void call(Subscriber<? super List<ProductPrice>> subscriber) {
+                try {
+                    List<ProductPrice> localResults = getProductPricesFromCloud(barcode);
+                    subscriber.onNext(localResults);
+                    subscriber.onCompleted();
+                } catch (IOException e) {
+                    subscriber.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io());
+    }
+
+    private List<ProductPrice> getProductPricesFromCloud(String barcode) throws IOException {
+        final Productprice service = new Productprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null).build();
+
+        ProductPriceCollection results = service.prices(barcode).execute();
+
+        List<ProductPrice> localResults = new LinkedList<ProductPrice>();
+        for (com.appspot.wise_logic_658.productprice.model.ProductPrice productPrice : results.getItems()) {
+            Product localProduct = new Product(productPrice.getProduct().getName(), productPrice.getProduct().getBarcode());
+            Place localPlace = new Place(productPrice.getPlace().getName(), new LatLng(productPrice.getPlace().getLatitude(), productPrice.getPlace().getLongitude()));
+            ProductPrice localResult = new ProductPrice(localProduct, localPlace, productPrice.getPrice());
+            localResults.add(localResult);
+        }
+        return localResults;
     }
 }
