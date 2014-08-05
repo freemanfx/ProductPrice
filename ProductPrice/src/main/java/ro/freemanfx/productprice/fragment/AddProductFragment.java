@@ -14,13 +14,14 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import ro.freemanfx.productprice.AppContext;
-import ro.freemanfx.productprice.BeanProvider;
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.SelectLocationActivity;
 import ro.freemanfx.productprice.domain.Product;
+import rx.functions.Action1;
 
 import static ro.freemanfx.productprice.BeanProvider.productService;
+import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
 public class AddProductFragment extends Fragment implements Constants {
     @InjectView(R.id.name)
@@ -48,11 +49,17 @@ public class AddProductFragment extends Fragment implements Constants {
     }
 
     private void setProductNameIfExists(String barcodeString) {
-        Product byBarcode = BeanProvider.productRepository().findByBarcode(barcodeString);
-        if (byBarcode != null) {
-            name.setText(byBarcode.getName());
-            name.setEnabled(false);
-        }
+        productService().findProduct(barcodeString)
+                .observeOn(mainThread())
+                .subscribe(new Action1<Product>() {
+                    @Override
+                    public void call(Product product) {
+                        if (product != null) {
+                            name.setText(product.getName());
+                            name.setEnabled(false);
+                        }
+                    }
+                });
     }
 
     @OnClick(R.id.select_location_on_map)

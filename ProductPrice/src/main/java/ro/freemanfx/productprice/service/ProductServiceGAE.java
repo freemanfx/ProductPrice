@@ -17,15 +17,33 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
+import static ro.freemanfx.productprice.BeanProvider.productPriceService;
 import static rx.Observable.OnSubscribe;
 import static rx.Observable.create;
 
 public class ProductServiceGAE implements IProductService {
     @Override
-    public Observable<String> addProduct(Product product, Place place, Double price) {
-        Productprice.Builder builder = new Productprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null);
-        final Productprice service = builder.build();
+    public Observable<Product> findProduct(final String barcode) {
+        return create(new OnSubscribe<Product>() {
+            @Override
+            public void call(Subscriber<? super Product> subscriber) {
+                try {
+                    com.appspot.wise_logic_658.productprice.model.Product product = productPriceService().findproduct(barcode).execute();
+                    if (product != null) {
+                        subscriber.onNext(new Product(product.getName(), product.getBarcode()));
+                        subscriber.onCompleted();
+                    }
+                    subscriber.onCompleted();
+                } catch (IOException e) {
+                    subscriber.onError(e);
+                }
 
+            }
+        }).subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<String> addProduct(Product product, Place place, Double price) {
         com.appspot.wise_logic_658.productprice.model.Product productTo = new com.appspot.wise_logic_658.productprice.model.Product();
         productTo.setBarcode(product.getBarcode());
         productTo.setName(product.getName());
@@ -45,7 +63,7 @@ public class ProductServiceGAE implements IProductService {
                     @Override
                     public void call(Subscriber<? super String> subscriber) {
                         try {
-                            Void result = service.add(data).execute();
+                            Void result = productPriceService().add(data).execute();
                             subscriber.onNext(result.toString());
                             subscriber.onCompleted();
                         } catch (IOException e) {
@@ -57,7 +75,7 @@ public class ProductServiceGAE implements IProductService {
 
     @Override
     public Observable<List<ProductPrice>> findByBarCode(final String barcode) {
-        return Observable.create(new OnSubscribe<List<ProductPrice>>() {
+        return create(new OnSubscribe<List<ProductPrice>>() {
             @Override
             public void call(Subscriber<? super List<ProductPrice>> subscriber) {
                 try {

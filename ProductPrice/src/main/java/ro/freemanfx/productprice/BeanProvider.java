@@ -3,6 +3,10 @@ package ro.freemanfx.productprice;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.appspot.wise_logic_658.productprice.Productprice;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.json.gson.GsonFactory;
+
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
 import ro.freemanfx.productprice.repository.PlaceRepository;
@@ -20,6 +24,7 @@ public class BeanProvider {
     private static ProductPriceRepository productPriceRepository;
     private static IProductService productService;
     private static ReactiveLocationProvider locationProvider;
+    private static Productprice productPriceService;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -72,5 +77,12 @@ public class BeanProvider {
             locationProvider = new ReactiveLocationProvider(context);
         }
         return locationProvider;
+    }
+
+    public static Productprice productPriceService() {
+        if (productPriceService == null) {
+            productPriceService = new Productprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null).build();
+        }
+        return productPriceService;
     }
 }
