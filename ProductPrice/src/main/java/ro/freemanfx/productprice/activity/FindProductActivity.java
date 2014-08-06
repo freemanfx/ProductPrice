@@ -23,16 +23,15 @@ public class FindProductActivity extends SingleFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.show_on_map:
-                showAllOnMap(getIntent().getStringExtra(BARCODE));
+                showAllOnMap();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void showAllOnMap(String barcode) {
+    private void showAllOnMap() {
         Intent intent = new Intent(this, ShowOnMapActivity.class);
-        intent.putExtra(BARCODE, barcode);
         startActivity(intent);
     }
 }
