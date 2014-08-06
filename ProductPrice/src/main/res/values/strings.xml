@@ -8,4 +8,5 @@
     <string name="touch_to_select_place">Touch to select place</string>
     <string name="New_place">New place</string>
     <string name="Select_this_place">Select this place ?</string>
+    <string name="internet_connection_needed_for_operation">You need a internet connection for this operation!</string>
 </resources>

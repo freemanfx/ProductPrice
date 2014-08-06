@@ -25,6 +25,7 @@ public class BeanProvider {
     private static IProductService productService;
     private static ReactiveLocationProvider locationProvider;
     private static Productprice productPriceService;
+    private static ConnectivityUtil connectivityUtil;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -84,5 +85,12 @@ public class BeanProvider {
             productPriceService = new Productprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null).build();
         }
         return productPriceService;
+    }
+
+    public static ConnectivityUtil connectivityUtil() {
+        if (connectivityUtil == null) {
+            connectivityUtil = new ConnectivityUtil(context);
+        }
+        return connectivityUtil;
     }
 }
