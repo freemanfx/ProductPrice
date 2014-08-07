@@ -35,9 +35,14 @@ dependencies {
     compile 'com.netflix.rxjava:rxjava-android:0.18.4'
     compile 'pl.charmas.android:android-reactive-location:0.2@aar'
     //Google App Engine
-    compile(group: 'com.appspot.wise_logic_658', name: 'productprice', version: 'v1-1.19.0-SNAPSHOT'){
+    compile(group: 'com.appspot.wise_logic_658', name: 'productprice', version: 'v1-1.19.0-SNAPSHOT') {
         exclude(group: 'com.google.guava')
     }
+
+    compile(group: 'com.appspot.wise_logic_658', name: 'place', version: 'v1-1.19.0-SNAPSHOT') {
+        exclude(group: 'com.google.guava')
+    }
+
     compile 'com.google.api-client:google-api-client-android2:1.10.0-beta'
 
     // Android extensions for Google HTTP Client.

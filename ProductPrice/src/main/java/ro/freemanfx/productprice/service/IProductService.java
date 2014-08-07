@@ -12,4 +12,6 @@ public interface IProductService {
     Observable<String> addProduct(Product product, Place place, Double price);
 
     Observable<List<ProductPrice>> findByBarCode(String barcode);
+
+    Observable<List<Place>> findAllPlaces();
 }

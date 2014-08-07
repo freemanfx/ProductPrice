@@ -15,11 +15,12 @@ import ro.freemanfx.productprice.domain.Product;
 import ro.freemanfx.productprice.domain.ProductPrice;
 import rx.Observable;
 import rx.Subscriber;
-import rx.schedulers.Schedulers;
 
+import static ro.freemanfx.productprice.BeanProvider.placeService;
 import static ro.freemanfx.productprice.BeanProvider.productPriceService;
 import static rx.Observable.OnSubscribe;
 import static rx.Observable.create;
+import static rx.schedulers.Schedulers.io;
 
 public class ProductServiceGAE implements IProductService {
     @Override
@@ -39,7 +40,7 @@ public class ProductServiceGAE implements IProductService {
                 }
 
             }
-        }).subscribeOn(Schedulers.io());
+        }).subscribeOn(io());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class ProductServiceGAE implements IProductService {
                             subscriber.onError(e);
                         }
                     }
-                }).subscribeOn(Schedulers.io());
+                }).subscribeOn(io());
     }
 
     @Override
@@ -79,14 +80,37 @@ public class ProductServiceGAE implements IProductService {
             @Override
             public void call(Subscriber<? super List<ProductPrice>> subscriber) {
                 try {
-                    List<ProductPrice> localResults = getProductPricesFromCloud(barcode);
-                    subscriber.onNext(localResults);
+                    subscriber.onNext(getProductPricesFromCloud(barcode));
                     subscriber.onCompleted();
                 } catch (IOException e) {
                     subscriber.onError(e);
                 }
             }
-        }).subscribeOn(Schedulers.io());
+        }).subscribeOn(io());
+    }
+
+    @Override
+    public Observable<List<Place>> findAllPlaces() {
+        return create(new OnSubscribe<List<Place>>() {
+            @Override
+            public void call(Subscriber<? super List<Place>> subscriber) {
+                try {
+                    subscriber.onNext(getLocalPlacesFromAPI());
+                    subscriber.onCompleted();
+                } catch (IOException e) {
+                    subscriber.onError(e);
+                }
+            }
+        }).subscribeOn(io());
+    }
+
+    private List<Place> getLocalPlacesFromAPI() throws IOException {
+        List<Place> localPlaces = new LinkedList<Place>();
+        List<com.appspot.wise_logic_658.place.model.Place> places = placeService().all().execute().getItems();
+        for (com.appspot.wise_logic_658.place.model.Place place : places) {
+            localPlaces.add(new Place(place.getName(), new LatLng(place.getLatitude(), place.getLongitude())));
+        }
+        return localPlaces;
     }
 
     private List<ProductPrice> getProductPricesFromCloud(String barcode) throws IOException {
