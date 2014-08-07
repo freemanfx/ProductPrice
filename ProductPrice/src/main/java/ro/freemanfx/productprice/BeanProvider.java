@@ -1,7 +1,6 @@
 package ro.freemanfx.productprice;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.appspot.wise_logic_658.place.Place;
 import com.appspot.wise_logic_658.productprice.Productprice;
@@ -9,16 +8,12 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.gson.GsonFactory;
 
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
-import ro.freemanfx.productprice.infrastructure.DatabaseHelper;
-import ro.freemanfx.productprice.repository.PlaceRepository;
 import ro.freemanfx.productprice.service.IProductService;
 import ro.freemanfx.productprice.service.ProductServiceGAE;
 
 public class BeanProvider {
     private static Context context;
 
-    private static DatabaseHelper databaseHelper;
-    private static PlaceRepository placeRepository;
     private static IProductService productService;
     private static ReactiveLocationProvider locationProvider;
     private static Productprice productPriceService;
@@ -27,27 +22,6 @@ public class BeanProvider {
 
     public static void init(Context context) {
         BeanProvider.context = context;
-    }
-
-    public static SQLiteDatabase getWritableDb() {
-        if (databaseHelper == null) {
-            databaseHelper = new DatabaseHelper(context);
-        }
-        return databaseHelper.getWritableDb();
-    }
-
-    public static SQLiteDatabase getReadableDb() {
-        if (databaseHelper == null) {
-            databaseHelper = new DatabaseHelper(context);
-        }
-        return databaseHelper.getReadableDatabase();
-    }
-
-    public static PlaceRepository placeRepository() {
-        if (placeRepository == null) {
-            placeRepository = new PlaceRepository();
-        }
-        return placeRepository;
     }
 
     public static IProductService productService() {
