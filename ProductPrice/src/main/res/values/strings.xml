@@ -9,4 +9,8 @@
     <string name="New_place">New place</string>
     <string name="Select_this_place">Select this place ?</string>
     <string name="internet_connection_needed_for_operation">You need a internet connection for this operation!</string>
+    <string name="add_product">Add product</string>
+    <string name="no_results_found">No results found</string>
+    <string name="select_location_for_product">Select location for product</string>
+    <string name="name_for_product">Name for product</string>
 </resources>

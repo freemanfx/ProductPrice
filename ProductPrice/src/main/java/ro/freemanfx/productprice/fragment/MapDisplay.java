@@ -23,5 +23,9 @@ public class MapDisplay extends SupportMapFragment {
                     .title(productPrice.getPrice().toString())
                     .snippet(productPrice.getPlace().getName()));
         }
+        if (AppContext.getProductPrices().size() > 0) {
+            ProductPrice productPrice = AppContext.getProductPrices().get(0);
+            getActivity().setTitle(productPrice.getProduct().getName());
+        }
     }
 }

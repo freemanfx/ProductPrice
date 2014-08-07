@@ -37,6 +37,12 @@ public class AddProductFragment extends Fragment implements Constants {
     TextView place;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().setTitle(R.string.add_product);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.addproduct_fragment, container, false);
         ButterKnife.inject(this, view);
@@ -56,7 +62,9 @@ public class AddProductFragment extends Fragment implements Constants {
                     public void call(Product product) {
                         if (product != null) {
                             name.setText(product.getName());
-                            name.setEnabled(false);
+                        } else {
+                            name.setHint(getString(R.string.name_for_product));
+                            name.setEnabled(true);
                         }
                     }
                 });
