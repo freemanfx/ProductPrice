@@ -107,8 +107,10 @@ public class ProductServiceGAE implements IProductService {
     private List<Place> getLocalPlacesFromAPI() throws IOException {
         List<Place> localPlaces = new LinkedList<Place>();
         List<com.appspot.wise_logic_658.place.model.Place> places = placeService().all().execute().getItems();
-        for (com.appspot.wise_logic_658.place.model.Place place : places) {
-            localPlaces.add(new Place(place.getName(), new LatLng(place.getLatitude(), place.getLongitude())));
+        if (places != null) {
+            for (com.appspot.wise_logic_658.place.model.Place place : places) {
+                localPlaces.add(new Place(place.getName(), new LatLng(place.getLatitude(), place.getLongitude())));
+            }
         }
         return localPlaces;
     }
@@ -119,11 +121,14 @@ public class ProductServiceGAE implements IProductService {
         ProductPriceCollection results = service.prices(barcode).execute();
 
         List<ProductPrice> localResults = new LinkedList<ProductPrice>();
-        for (com.appspot.wise_logic_658.productprice.model.ProductPrice productPrice : results.getItems()) {
-            Product localProduct = new Product(productPrice.getProduct().getName(), productPrice.getProduct().getBarcode());
-            Place localPlace = new Place(productPrice.getPlace().getName(), new LatLng(productPrice.getPlace().getLatitude(), productPrice.getPlace().getLongitude()));
-            ProductPrice localResult = new ProductPrice(localProduct, localPlace, productPrice.getPrice());
-            localResults.add(localResult);
+        List<com.appspot.wise_logic_658.productprice.model.ProductPrice> items = results.getItems();
+        if (items != null) {
+            for (com.appspot.wise_logic_658.productprice.model.ProductPrice productPrice : items) {
+                Product localProduct = new Product(productPrice.getProduct().getName(), productPrice.getProduct().getBarcode());
+                Place localPlace = new Place(productPrice.getPlace().getName(), new LatLng(productPrice.getPlace().getLatitude(), productPrice.getPlace().getLongitude()));
+                ProductPrice localResult = new ProductPrice(localProduct, localPlace, productPrice.getPrice());
+                localResults.add(localResult);
+            }
         }
         return localResults;
     }

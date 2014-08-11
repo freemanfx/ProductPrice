@@ -91,8 +91,12 @@ public class FindProductFragment extends ListFragment {
                         public void call(List<ProductPrice> productPrices) {
                             AppContext.setProductPrices(productPrices);
 
-                            Product product = productPrices.get(0).getProduct();
-                            setTitleForProduct(product.getName());
+                            if (productPrices.size() > 0) {
+                                Product product = productPrices.get(0).getProduct();
+                                setTitleForProduct(product.getName());
+                            } else {
+                                setTitleForProduct(getString(R.string.no_results));
+                            }
 
                             addAll(productPrices);
                             notifyDataSetChanged();
