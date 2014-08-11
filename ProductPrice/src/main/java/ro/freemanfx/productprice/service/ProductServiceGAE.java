@@ -32,7 +32,8 @@ public class ProductServiceGAE implements IProductService {
                     com.appspot.wise_logic_658.productprice.model.Product product = productPriceService().findproduct(barcode).execute();
                     if (product != null) {
                         subscriber.onNext(new Product(product.getName(), product.getBarcode()));
-                        subscriber.onCompleted();
+                    } else {
+                        subscriber.onNext(null);
                     }
                     subscriber.onCompleted();
                 } catch (IOException e) {
