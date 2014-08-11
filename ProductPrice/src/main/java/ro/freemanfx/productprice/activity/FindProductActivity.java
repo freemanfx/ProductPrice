@@ -1,6 +1,7 @@
 package ro.freemanfx.productprice.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,12 @@ public class FindProductActivity extends SingleFragmentActivity {
     @Override
     Fragment createFragment() {
         return new FindProductFragment();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActionBar().setTitle("Loading prices...");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

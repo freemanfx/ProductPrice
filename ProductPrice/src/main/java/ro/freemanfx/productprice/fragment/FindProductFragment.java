@@ -22,8 +22,8 @@ import static ro.freemanfx.productprice.Constants.BARCODE;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
 public class FindProductFragment extends ListFragment {
-
     private String barcode;
+    private boolean dataLoaded = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,9 +31,6 @@ public class FindProductFragment extends ListFragment {
         barcode = getActivity().getIntent().getStringExtra(BARCODE);
     }
 
-    private void setTitleForProduct(String title) {
-        getActivity().getActionBar().setTitle(title);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +39,20 @@ public class FindProductFragment extends ListFragment {
         //TODO: fix this, it crashes
         //setEmptyText(getString(R.string.no_results_found));
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!dataLoaded) {
+            setListShown(false);
+        } else {
+            setListShown(true);
+        }
+    }
+
+    private void setTitleForProduct(String title) {
+        getActivity().getActionBar().setTitle(title);
     }
 
     private class ProductsAdapter extends ArrayAdapter<ProductPrice> {
@@ -85,6 +96,8 @@ public class FindProductFragment extends ListFragment {
 
                             addAll(productPrices);
                             notifyDataSetChanged();
+                            setListShown(true);
+                            dataLoaded = true;
                         }
                     });
         }
