@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MyPrice</string>
+    <string name="find_by_barcode">Cauta dupa barcode</string>
+    <string name="Add">Adauga</string>
+    <string name="show_on_map">Arata pe Harta</string>
+    <string name="OK">OK</string>
+    <string name="enter_place_name">Introdu numele locatiei</string>
+    <string name="touch_to_select_place">Atinge pentru selectie locatie</string>
+    <string name="New_place">Locatie noua</string>
+    <string name="Select_this_place">Alegere loc ?</string>
+    <string name="internet_connection_needed_for_operation">Aplicatie are nevoie de acces la internet pentru aceasta operatie!</string>
+    <string name="add_product">Adauga produs</string>
+    <string name="no_results_found">Nu sunt rezultate</string>
+    <string name="select_location_for_product">Alege locatie pentru produs</string>
+    <string name="name_for_product">Numele produsului</string>
+</resources>

@@ -95,7 +95,7 @@ public class FindProductFragment extends ListFragment {
                                 Product product = productPrices.get(0).getProduct();
                                 setTitleForProduct(product.getName());
                             } else {
-                                setTitleForProduct(getString(R.string.no_results));
+                                setTitleForProduct(getString(R.string.no_results_found));
                             }
 
                             addAll(productPrices);
