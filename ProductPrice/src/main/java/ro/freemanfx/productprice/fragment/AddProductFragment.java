@@ -20,6 +20,8 @@ import ro.freemanfx.productprice.activity.SelectLocationActivity;
 import ro.freemanfx.productprice.domain.Product;
 import rx.functions.Action1;
 
+import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
+import static ro.freemanfx.productprice.BeanProvider.displayNoConnectivityMessage;
 import static ro.freemanfx.productprice.BeanProvider.productService;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
@@ -72,6 +74,10 @@ public class AddProductFragment extends Fragment implements Constants {
 
     @OnClick(R.id.select_location_on_map)
     public void selectLocationOnMap() {
+        if (!connectivityUtil().isConnected()) {
+            displayNoConnectivityMessage();
+            return;
+        }
         Intent intent = new Intent(getActivity(), SelectLocationActivity.class);
         startActivityForResult(intent, Constants.SELECT_LOCATION);
     }

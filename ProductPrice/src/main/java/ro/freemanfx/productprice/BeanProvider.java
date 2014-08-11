@@ -1,6 +1,7 @@
 package ro.freemanfx.productprice;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.appspot.wise_logic_658.place.Place;
 import com.appspot.wise_logic_658.productprice.Productprice;
@@ -57,5 +58,9 @@ public class BeanProvider {
             connectivityUtil = new ConnectivityUtil(context);
         }
         return connectivityUtil;
+    }
+
+    public static void displayNoConnectivityMessage() {
+        Toast.makeText(context, context.getString(R.string.internet_connection_needed_for_operation), Toast.LENGTH_SHORT).show();
     }
 }

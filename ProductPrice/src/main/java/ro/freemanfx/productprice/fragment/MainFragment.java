@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -17,6 +16,7 @@ import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.ScanProductActivity;
 
 import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
+import static ro.freemanfx.productprice.BeanProvider.displayNoConnectivityMessage;
 
 public class MainFragment extends Fragment implements Constants {
 
@@ -53,10 +53,6 @@ public class MainFragment extends Fragment implements Constants {
             }
         });
         return view;
-    }
-
-    private void displayNoConnectivityMessage() {
-        Toast.makeText(getActivity(), getString(R.string.internet_connection_needed_for_operation), Toast.LENGTH_SHORT).show();
     }
 
     private void startScanFor(String scanIntent) {
