@@ -50,7 +50,7 @@
         <activity
             android:name=".activity.ScanProductActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ShowOnMapActivity" />
+        <activity android:name=".activity.ShowPricesOnMapActivity" />
         <activity android:name=".activity.SelectLocationActivity" />
     </application>
 

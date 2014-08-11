@@ -31,7 +31,7 @@ public class FindProductActivity extends SingleFragmentActivity {
     }
 
     private void showAllOnMap() {
-        Intent intent = new Intent(this, ShowOnMapActivity.class);
+        Intent intent = new Intent(this, ShowPricesOnMapActivity.class);
         startActivity(intent);
     }
 }
