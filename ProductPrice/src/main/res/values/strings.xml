@@ -15,4 +15,7 @@
     <string name="name_for_product">Name for product</string>
     <string name="add_price">Add price</string>
     <string name="fuels">Fuels</string>
+
+    <string name="gasoline">Gasoline</string>
+    <string name="diesel">Diesel</string>
 </resources>
