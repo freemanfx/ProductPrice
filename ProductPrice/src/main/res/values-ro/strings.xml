@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyPrice</string>
-    <string name="find_by_barcode">Cauta dupa barcode</string>
+    <string name="search">Cauta</string>
     <string name="Add">Adauga</string>
     <string name="show_on_map">Arata pe Harta</string>
     <string name="OK">OK</string>

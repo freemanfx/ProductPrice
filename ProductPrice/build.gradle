@@ -44,6 +44,10 @@ dependencies {
         exclude(group: 'com.google.guava')
     }
 
+    compile(group: 'com.appspot.wise_logic_658', name: 'fuelprice', version: 'v1-1.19.0-SNAPSHOT') {
+        exclude(group: 'com.google.guava')
+    }
+
     compile 'com.google.api-client:google-api-client-android2:1.10.0-beta'
 
     // Android extensions for Google HTTP Client.
