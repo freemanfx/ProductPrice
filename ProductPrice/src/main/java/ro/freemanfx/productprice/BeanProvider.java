@@ -9,6 +9,7 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.gson.GsonFactory;
 
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
+import ro.freemanfx.productprice.service.FuelService;
 import ro.freemanfx.productprice.service.IProductService;
 import ro.freemanfx.productprice.service.ProductServiceGAE;
 
@@ -20,6 +21,7 @@ public class BeanProvider {
     private static Productprice productPriceService;
     private static ConnectivityUtil connectivityUtil;
     private static Place placeService;
+    private static FuelService fuelService;
 
     public static void init(Context context) {
         BeanProvider.context = context;
@@ -62,5 +64,12 @@ public class BeanProvider {
 
     public static void displayNoConnectivityMessage() {
         Toast.makeText(context, context.getString(R.string.internet_connection_needed_for_operation), Toast.LENGTH_SHORT).show();
+    }
+
+    public static FuelService fuelService() {
+        if (fuelService == null) {
+            fuelService = new FuelService();
+        }
+        return fuelService;
     }
 }
