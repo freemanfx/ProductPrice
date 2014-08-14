@@ -62,11 +62,11 @@ public class FuelSelectionFragment extends Fragment {
         return textView;
     }
 
-    private void addRadioButtonsForGroup(String[] group, ViewGroup parent) {
-        for (String type : group) {
+    private void addRadioButtonsForGroup(FuelTypes.FuelResource[] group, ViewGroup parent) {
+        for (FuelTypes.FuelResource fuelResource : group) {
             RadioButton radioButton = new RadioButton(getActivity());
-            radioButton.setText(type);
-            radioButton.setTag(type);
+            radioButton.setText(fuelResource.resId);
+            radioButton.setTag(fuelResource.type);
             radioButton.setOnClickListener(fuelTypeClickListener());
             parent.addView(radioButton);
         }

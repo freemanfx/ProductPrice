@@ -18,4 +18,12 @@
 
     <string name="gasoline">Gasoline</string>
     <string name="diesel">Diesel</string>
+
+    <!--Fuel types names -->
+    <string name="GASOLINE_STANDARD_95">Standard 95</string>
+    <string name="GASOLINE_EXTRA_99">Extra 99</string>
+
+    <string name="DIESEL_STANDARD">Standard</string>
+    <string name="DIESEL_EXTRA">Extra</string>
+
 </resources>
