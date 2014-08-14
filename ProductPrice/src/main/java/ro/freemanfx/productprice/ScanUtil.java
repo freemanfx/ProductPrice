@@ -7,7 +7,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 public class ScanUtil {
 
     public static final int EAN_13_BARCODE_LENGTH = 13;
-    public static final int EAN_8_BARCODE_LENGHT = 8;
+    public static final int EAN_8_BARCODE_LENGTH = 8;
 
     public static void scanProductCode(Activity activityForResult) {
         IntentIntegrator integrator = new IntentIntegrator(activityForResult);
@@ -19,9 +19,16 @@ public class ScanUtil {
     }
 
     public static boolean validBarcode(String barcode) {
-        if (barcode == null || barcode.length() != EAN_13_BARCODE_LENGTH || barcode.length() != EAN_8_BARCODE_LENGHT) {
+        if (barcode == null) {
             return false;
         }
-        return true;
+
+        switch (barcode.length()) {
+            case EAN_13_BARCODE_LENGTH:
+            case EAN_8_BARCODE_LENGTH:
+                return true;
+            default:
+                return false;
+        }
     }
 }
