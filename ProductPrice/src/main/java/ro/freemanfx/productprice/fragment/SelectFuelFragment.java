@@ -45,12 +45,12 @@ public class SelectFuelFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.search_button)
+    @OnClick(R.id.search)
     public void onSearchButtonClick() {
         startActivity(new Intent(getActivity(), FindFuelPriceActivity.class));
     }
 
-    @OnClick(R.id.add_button)
+    @OnClick(R.id.add)
     public void onAddButtonClick() {
         startActivity(new Intent(getActivity(), AddFuelPriceActivity.class));
     }
