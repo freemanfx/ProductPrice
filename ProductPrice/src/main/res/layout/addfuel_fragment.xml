@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/small_padding"
+    android:paddingLeft="@dimen/small_padding"
+    android:paddingRight="@dimen/small_padding"
+    android:paddingTop="@dimen/small_padding">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:gravity="center_vertical"
+        android:hint="Diesel Standard"
+        android:paddingLeft="@dimen/small_padding"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/select_location_on_map"
+            android:gravity="center_vertical"
+            android:hint="Select a place on the map"
+            android:paddingLeft="16dp"
+            android:textSize="18dp" />
+
+        <ImageButton
+            android:id="@+id/select_location_on_map"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:src="@android:drawable/ic_dialog_map" />
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:hint="Price"
+        android:numeric="decimal" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/input_height"
+        android:text="@string/Add" />
+</LinearLayout>

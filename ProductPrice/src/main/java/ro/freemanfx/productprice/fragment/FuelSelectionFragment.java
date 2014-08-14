@@ -1,6 +1,7 @@
 package ro.freemanfx.productprice.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -16,7 +17,9 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
+import ro.freemanfx.productprice.activity.AddFuelPriceActivity;
 import ro.freemanfx.productprice.service.FuelTypes;
 
 public class FuelSelectionFragment extends Fragment {
@@ -25,7 +28,6 @@ public class FuelSelectionFragment extends Fragment {
     RadioGroup radioGroup;
     @InjectView(R.id.button_bar)
     View buttonBar;
-    private String selectedFuelType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class FuelSelectionFragment extends Fragment {
 
     @OnClick(R.id.add_button)
     public void onAddButtonClick() {
-        Toast.makeText(getActivity(), "Add...", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity(), AddFuelPriceActivity.class));
     }
 
     private TextView createTypeCategoryTextView(int textResourceId) {
@@ -66,7 +68,7 @@ public class FuelSelectionFragment extends Fragment {
         for (FuelTypes.FuelResource fuelResource : group) {
             RadioButton radioButton = new RadioButton(getActivity());
             radioButton.setText(fuelResource.resId);
-            radioButton.setTag(fuelResource.type);
+            radioButton.setTag(fuelResource);
             radioButton.setOnClickListener(fuelTypeClickListener());
             parent.addView(radioButton);
         }
@@ -79,7 +81,7 @@ public class FuelSelectionFragment extends Fragment {
                 int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
                 if (checkedRadioButtonId != -1) {
                     View radioButton = radioGroup.findViewById(checkedRadioButtonId);
-                    selectedFuelType = (String) radioButton.getTag();
+                    AppContext.setFuel((FuelTypes.FuelResource) radioButton.getTag());
                 }
 
                 buttonBar.setVisibility(View.VISIBLE);

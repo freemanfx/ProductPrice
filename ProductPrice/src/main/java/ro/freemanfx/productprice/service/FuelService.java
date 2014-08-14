@@ -13,6 +13,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 import static rx.Observable.create;
+import static rx.schedulers.Schedulers.io;
 
 public class FuelService {
     private Fuelprice service = new Fuelprice.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), null).build();
@@ -23,13 +24,15 @@ public class FuelService {
             public void call(Subscriber<? super String> subscriber) {
                 try {
                     Void execute = service.add(fuelPrice).execute();
-                    subscriber.onNext(execute.toString());
+                    if (execute != null) {
+                        subscriber.onNext(execute.toString());
+                    }
                     subscriber.onCompleted();
                 } catch (IOException e) {
                     subscriber.onError(e);
                 }
             }
-        });
+        }).subscribeOn(io());
     }
 
     public Observable<List<FuelPrice>> findByFuel(final String fuel) {
@@ -44,6 +47,6 @@ public class FuelService {
                     subscriber.onError(e);
                 }
             }
-        });
+        }).subscribeOn(io());
     }
 }
