@@ -25,5 +25,6 @@
 
     <string name="DIESEL_STANDARD">Standard</string>
     <string name="DIESEL_EXTRA">Extra</string>
+    <string name="select_fuel">Select fuel</string>
 
 </resources>

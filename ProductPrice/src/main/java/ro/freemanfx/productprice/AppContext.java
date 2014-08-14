@@ -1,5 +1,7 @@
 package ro.freemanfx.productprice;
 
+import com.appspot.wise_logic_658.fuelprice.model.FuelPrice;
+
 import java.util.List;
 
 import ro.freemanfx.productprice.domain.Place;
@@ -10,6 +12,7 @@ public class AppContext {
     private static Place place;
     private static List<ProductPrice> productPrices;
     private static FuelTypes.FuelResource fuel;
+    private static List<FuelPrice> fuelPrices;
 
     public static Place getPlace() {
         return place;
@@ -33,5 +36,13 @@ public class AppContext {
 
     public static void setFuel(FuelTypes.FuelResource fuel) {
         AppContext.fuel = fuel;
+    }
+
+    public static List<FuelPrice> getFuelPrices() {
+        return fuelPrices;
+    }
+
+    public static void setFuelPrices(List<FuelPrice> fuelPrices) {
+        AppContext.fuelPrices = fuelPrices;
     }
 }

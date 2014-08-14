@@ -8,18 +8,20 @@ import android.view.MenuItem;
 
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.fragment.FindProductFragment;
+import ro.freemanfx.productprice.fragment.FindFuelPriceFragment;
 
-public class FindProductActivity extends SingleFragmentActivity {
+import static ro.freemanfx.productprice.AppContext.getFuel;
+
+public class FindFuelPriceActivity extends SingleFragmentActivity {
     @Override
     Fragment createFragment() {
-        return new FindProductFragment();
+        return new FindFuelPriceFragment();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle("Loading prices...");
+        setFuelTypeAsTitle();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,7 +42,13 @@ public class FindProductActivity extends SingleFragmentActivity {
 
     private void showAllOnMap() {
         Intent intent = new Intent(this, ShowPricesOnMapActivity.class);
-        intent.putExtra(Constants.PRICE_TYPES, Constants.PRODUCT_PRICES);
+        intent.putExtra(Constants.PRICE_TYPES, Constants.FUEL_PRICES);
         startActivity(intent);
+    }
+
+    private void setFuelTypeAsTitle() {
+        String first = getString(getFuel().categoryResId);
+        String second = getString(getFuel().resId);
+        setTitle(first + " " + second);
     }
 }

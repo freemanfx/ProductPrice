@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -20,6 +19,7 @@ import butterknife.OnClick;
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.AddFuelPriceActivity;
+import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
 import ro.freemanfx.productprice.service.FuelTypes;
 
 public class FuelSelectionFragment extends Fragment {
@@ -47,7 +47,7 @@ public class FuelSelectionFragment extends Fragment {
 
     @OnClick(R.id.search_button)
     public void onSearchButtonClick() {
-        Toast.makeText(getActivity(), "Search...", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity(), FindFuelPriceActivity.class));
     }
 
     @OnClick(R.id.add_button)
