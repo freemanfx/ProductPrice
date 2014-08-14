@@ -13,8 +13,8 @@ import butterknife.InjectView;
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.activity.FuelSelectionActivity;
 import ro.freemanfx.productprice.activity.ScanProductActivity;
+import ro.freemanfx.productprice.activity.SelectFuelActivity;
 
 import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
 import static ro.freemanfx.productprice.BeanProvider.displayNoConnectivityMessage;
@@ -59,7 +59,7 @@ public class MainFragment extends Fragment implements Constants {
         fuels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FuelSelectionActivity.class);
+                Intent intent = new Intent(getActivity(), SelectFuelActivity.class);
                 startActivity(intent);
             }
         });

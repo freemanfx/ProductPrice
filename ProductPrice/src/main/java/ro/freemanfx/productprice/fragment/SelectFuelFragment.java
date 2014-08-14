@@ -22,7 +22,7 @@ import ro.freemanfx.productprice.activity.AddFuelPriceActivity;
 import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
 import ro.freemanfx.productprice.service.FuelTypes;
 
-public class FuelSelectionFragment extends Fragment {
+public class SelectFuelFragment extends Fragment {
 
     @InjectView(R.id.fuel_radio_group)
     RadioGroup radioGroup;

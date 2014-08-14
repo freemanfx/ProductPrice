@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.fragment.FuelSelectionFragment;
+import ro.freemanfx.productprice.fragment.SelectFuelFragment;
 
-public class FuelSelectionActivity extends SingleFragmentActivity {
+public class SelectFuelActivity extends SingleFragmentActivity {
     @Override
     Fragment createFragment() {
-        return new FuelSelectionFragment();
+        return new SelectFuelFragment();
     }
 
     @Override
