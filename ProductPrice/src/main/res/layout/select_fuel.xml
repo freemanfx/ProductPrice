@@ -38,9 +38,11 @@
         android:layout_height="match_parent"
         android:layout_above="@id/button_bar"
         android:orientation="vertical"
-        android:paddingLeft="30dp">
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
-        <RadioGroup
+
+    <RadioGroup
             android:id="@+id/fuel_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
