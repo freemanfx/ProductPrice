@@ -1,17 +1,20 @@
 package ro.freemanfx.productprice.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.appspot.wise_logic_658.fuelprice.model.FuelPrice;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
@@ -20,18 +23,20 @@ import rx.functions.Action1;
 
 import static ro.freemanfx.productprice.BeanProvider.fuelService;
 
-public class FindFuelPriceFragment extends ListFragment {
+public class FindFuelPriceFragment extends Fragment {
+    @InjectView(R.id.progressbar)
+    View progressBar;
+    @InjectView(android.R.id.list)
+    ListView listView;
+    @InjectView(android.R.id.empty)
+    TextView emptyTextView;
     private boolean dataLoaded = false;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
-        setListAdapter(new FuePriceAdapter());
+        View view = inflater.inflate(R.layout.list_fragment, container, false);
+        ButterKnife.inject(this, view);
+        listView.setAdapter(new FuePriceAdapter());
         return view;
     }
 
@@ -39,15 +44,26 @@ public class FindFuelPriceFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         if (!dataLoaded) {
-            setListShown(false);
+            listView.setVisibility(View.GONE);
         } else {
-            setListShown(true);
+            showListAndHideProgressBar();
         }
     }
 
     private void setMapButtonVisibility(boolean visibility) {
         FindFuelPriceActivity activity = (FindFuelPriceActivity) getActivity();
         activity.getShowMapMenuItem().setVisible(visibility);
+    }
+
+    private void showNoResults() {
+        progressBar.setVisibility(View.GONE);
+        listView.setVisibility(View.GONE);
+        emptyTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showListAndHideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
     }
 
     private class FuePriceAdapter extends ArrayAdapter<FuelPrice> {
@@ -83,9 +99,10 @@ public class FindFuelPriceFragment extends ListFragment {
                                 addAll(fuelPrices);
                                 notifyDataSetChanged();
                                 setMapButtonVisibility(true);
+                                showListAndHideProgressBar();
+                            } else {
+                                showNoResults();
                             }
-
-                            setListShown(true);
                             dataLoaded = true;
                         }
                     });
