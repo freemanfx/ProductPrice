@@ -14,6 +14,7 @@ import java.util.List;
 
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
+import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -42,6 +43,11 @@ public class FindFuelPriceFragment extends ListFragment {
         } else {
             setListShown(true);
         }
+    }
+
+    private void setMapButtonVisibility(boolean visibility) {
+        FindFuelPriceActivity activity = (FindFuelPriceActivity) getActivity();
+        activity.getShowMapMenuItem().setVisible(visibility);
     }
 
     private class FuePriceAdapter extends ArrayAdapter<FuelPrice> {
@@ -73,8 +79,12 @@ public class FindFuelPriceFragment extends ListFragment {
                         @Override
                         public void call(List<FuelPrice> fuelPrices) {
                             AppContext.setFuelPrices(fuelPrices);
-                            addAll(fuelPrices);
-                            notifyDataSetChanged();
+                            if (fuelPrices != null) {
+                                addAll(fuelPrices);
+                                notifyDataSetChanged();
+                                setMapButtonVisibility(true);
+                            }
+
                             setListShown(true);
                             dataLoaded = true;
                         }

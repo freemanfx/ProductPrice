@@ -13,6 +13,8 @@ import ro.freemanfx.productprice.fragment.FindFuelPriceFragment;
 import static ro.freemanfx.productprice.AppContext.getFuel;
 
 public class FindFuelPriceActivity extends SingleFragmentActivity {
+    private MenuItem showMapMenuItem;
+
     @Override
     Fragment createFragment() {
         return new FindFuelPriceFragment();
@@ -26,6 +28,8 @@ public class FindFuelPriceActivity extends SingleFragmentActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.prices_list_menu, menu);
+        showMapMenuItem = menu.getItem(0);
+        showMapMenuItem.setVisible(false);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -50,5 +54,9 @@ public class FindFuelPriceActivity extends SingleFragmentActivity {
         String first = getString(getFuel().categoryResId);
         String second = getString(getFuel().resId);
         setTitle(first + " " + second);
+    }
+
+    public MenuItem getShowMapMenuItem() {
+        return showMapMenuItem;
     }
 }
