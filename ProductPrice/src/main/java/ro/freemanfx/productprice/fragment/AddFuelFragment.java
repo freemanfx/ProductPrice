@@ -40,7 +40,7 @@ public class AddFuelFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.add_product);
+        getActivity().setTitle(R.string.add_fuel_price);
     }
 
     @Override

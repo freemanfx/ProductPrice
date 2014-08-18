@@ -32,4 +32,5 @@
     <string name="select_fuel">Alege carburant</string>
     <string name="select_place_on_map">Alege loc pe hartă</string>
     <string name="enter_price">Introdu preț</string>
+    <string name="add_fuel_price">Adaugă preț carburant</string>
 </resources>

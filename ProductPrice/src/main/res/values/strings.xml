@@ -32,5 +32,6 @@
     <string name="select_fuel">Select fuel</string>
     <string name="select_place_on_map">Select a place on the map</string>
     <string name="enter_price">Enter price</string>
+    <string name="add_fuel_price">Add fuel price</string>
 
 </resources>
