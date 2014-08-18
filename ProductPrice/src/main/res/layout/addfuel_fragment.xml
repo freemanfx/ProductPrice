@@ -7,9 +7,9 @@
     android:paddingBottom="@dimen/small_padding"
     android:paddingLeft="@dimen/small_padding"
     android:paddingRight="@dimen/small_padding"
-    android:paddingTop="@dimen/small_padding">
+    android:paddingTop="@dimen/fragment_padding_top">
 
-    <TextView
+<TextView
         android:id="@+id/name"
         style="@style/main_button"
         android:layout_width="match_parent"
