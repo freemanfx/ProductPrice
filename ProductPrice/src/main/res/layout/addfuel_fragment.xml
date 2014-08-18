@@ -34,15 +34,18 @@
             android:layout_toRightOf="@+id/select_location_on_map"
             android:gravity="center_vertical"
             android:hint="@string/select_place_on_map"
-            android:paddingLeft="@dimen/small_padding"
+            android:paddingLeft="10dp"
             android:textSize="18dp" />
 
         <ImageButton
             android:id="@+id/select_location_on_map"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:src="@android:drawable/ic_dialog_map" />
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map_icon" />
+
     </RelativeLayout>
 
 
@@ -50,13 +53,13 @@
         android:id="@+id/price"
         style="@style/main_button"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
         android:layout_below="@id/place_row"
         android:layout_marginTop="@dimen/small_padding"
         android:background="@android:color/transparent"
         android:drawableLeft="@drawable/price_tag"
         android:hint="@string/enter_price"
-        android:numeric="decimal" />
+        android:numeric="decimal"
+        android:paddingLeft="@dimen/small_padding" />
 
 
     <Button
