@@ -9,4 +9,8 @@ public interface Constants {
     String PRICE_TYPES = "PRICE_TYPES";
     String FUEL_PRICES = "FUEL_PRICES";
     String PRODUCT_PRICES = "PRODUCT_PRICES";
+
+    String LOCATION_TYPE = "LOCATION_TYPE";
+    String PRODUCT_LOCATION = "PRODUCT_TYPE";
+    String FUEL_LOCATION = "FUEL_LOCATION";
 }

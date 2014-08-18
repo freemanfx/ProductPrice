@@ -20,6 +20,7 @@ import ro.freemanfx.productprice.activity.SelectLocationActivity;
 import ro.freemanfx.productprice.domain.Product;
 import rx.functions.Action1;
 
+import static ro.freemanfx.productprice.AppContext.getPlace;
 import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
 import static ro.freemanfx.productprice.BeanProvider.displayNoConnectivityMessage;
 import static ro.freemanfx.productprice.BeanProvider.productService;
@@ -79,6 +80,7 @@ public class AddProductFragment extends Fragment implements Constants {
             return;
         }
         Intent intent = new Intent(getActivity(), SelectLocationActivity.class);
+        intent.putExtra(Constants.LOCATION_TYPE, Constants.PRODUCT_LOCATION);
         startActivityForResult(intent, Constants.SELECT_LOCATION);
     }
 
@@ -106,25 +108,26 @@ public class AddProductFragment extends Fragment implements Constants {
     private boolean validInput() {
         String nameString = name.getText().toString();
         String priceString = price.getText().toString();
-        String barcodeString = barcode.getText().toString();
 
         if (invalidString(nameString)) {
-            Toast.makeText(getActivity(), "Name is empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.name_is_empty, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (getPlace() == null) {
+            Toast.makeText(getActivity(), R.string.please_select_place, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (invalidString(priceString)) {
-            Toast.makeText(getActivity(), "Price is empty!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.price_is_empty, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (invalidString(barcodeString)) {
-            Toast.makeText(getActivity(), "Barcode is empty!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        double priceDouble = Double.parseDouble(priceString);
 
-        if (AppContext.getPlace() == null) {
-            Toast.makeText(getActivity(), "Please select a place!", Toast.LENGTH_SHORT).show();
+        if (priceDouble == 0L) {
+            Toast.makeText(getActivity(), R.string.price_greater_than_zero_expected, Toast.LENGTH_SHORT).show();
             return false;
         }
 

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import ro.freemanfx.productprice.AppContext;
+import ro.freemanfx.productprice.Constants;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.domain.Place;
 import rx.functions.Action1;
@@ -26,6 +27,7 @@ import static android.widget.LinearLayout.LayoutParams.MATCH_PARENT;
 import static com.google.android.gms.maps.CameraUpdateFactory.newLatLng;
 import static com.google.android.gms.maps.model.BitmapDescriptorFactory.HUE_GREEN;
 import static com.google.android.gms.maps.model.BitmapDescriptorFactory.defaultMarker;
+import static ro.freemanfx.productprice.BeanProvider.fuelService;
 import static ro.freemanfx.productprice.BeanProvider.locationProvider;
 import static ro.freemanfx.productprice.BeanProvider.productService;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
@@ -58,23 +60,43 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
             });
         }
 
+
         addExistingPlaces();
     }
 
     private void addExistingPlaces() {
-        productService()
-                .findAllPlaces()
-                .observeOn(mainThread())
-                .subscribe(new Action1<List<Place>>() {
-                    @Override
-                    public void call(List<Place> places) {
-                        for (Place place : places) {
-                            MarkerOptions markerOption = existingPlaceMarker(place);
-                            Marker marker = map.addMarker(markerOption);
-                            markerIdToPlaces.put(marker.getId(), place);
+        String locationType = getActivity().getIntent().getStringExtra(Constants.LOCATION_TYPE);
+
+        if (Constants.PRODUCT_LOCATION.equals(locationType)) {
+            productService()
+                    .findAllPlaces()
+                    .observeOn(mainThread())
+                    .subscribe(new Action1<List<Place>>() {
+                        @Override
+                        public void call(List<Place> places) {
+                            addMarkersFor(places);
                         }
-                    }
-                });
+                    });
+        } else {
+            fuelService()
+                    .allGasStations()
+                    .observeOn(mainThread())
+                    .subscribe(new Action1<List<Place>>() {
+                        @Override
+                        public void call(List<Place> places) {
+                            addMarkersFor(places);
+                        }
+                    });
+        }
+
+    }
+
+    private void addMarkersFor(List<Place> places) {
+        for (Place place : places) {
+            MarkerOptions markerOption = existingPlaceMarker(place);
+            Marker marker = map.addMarker(markerOption);
+            markerIdToPlaces.put(marker.getId(), place);
+        }
     }
 
     private MarkerOptions existingPlaceMarker(Place place) {

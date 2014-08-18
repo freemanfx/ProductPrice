@@ -36,4 +36,5 @@
     <string name="price_is_empty">Prețul nu este completat!</string>
     <string name="price_greater_than_zero_expected">Prețul trebuie sa fie mai mare decât zero!</string>
     <string name="please_select_place">Alege o locație!</string>
+    <string name="name_is_empty">Numele nu este completat!</string>
 </resources>

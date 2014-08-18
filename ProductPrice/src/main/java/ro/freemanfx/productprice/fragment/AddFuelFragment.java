@@ -58,6 +58,7 @@ public class AddFuelFragment extends Fragment {
             return;
         }
         Intent intent = new Intent(getActivity(), SelectLocationActivity.class);
+        intent.putExtra(Constants.LOCATION_TYPE, Constants.FUEL_LOCATION);
         startActivityForResult(intent, Constants.SELECT_LOCATION);
     }
 
