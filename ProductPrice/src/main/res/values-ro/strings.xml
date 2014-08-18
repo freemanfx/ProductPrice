@@ -1,16 +1,33 @@
 <resources>
     <string name="app_name">MyPrice</string>
-    <string name="search">Cauta</string>
-    <string name="Add">Adauga</string>
-    <string name="show_on_map">Arata pe Harta</string>
+    <string name="search">Caută</string>
+    <string name="Add">Adaugă</string>
+    <string name="show_on_map">Arată pe hartă</string>
     <string name="OK">OK</string>
-    <string name="enter_place_name">Introdu numele locatiei</string>
-    <string name="touch_to_select_place">Atinge pentru selectie locatie</string>
-    <string name="New_place">Locatie noua</string>
+    <string name="enter_place_name">Introdu numele locației</string>
+    <string name="touch_to_select_place">Atinge pentru selecție locație</string>
+    <string name="New_place">Locatie nouă</string>
     <string name="Select_this_place">Alegere loc ?</string>
-    <string name="internet_connection_needed_for_operation">Aplicatie are nevoie de acces la internet pentru aceasta operatie!</string>
-    <string name="add_product">Adauga produs</string>
+    <string name="internet_connection_needed_for_operation">Aplicația are nevoie de acces la internet pentru această operație!</string>
+    <string name="add_product">Adaugă produs</string>
     <string name="no_results_found">Nu sunt rezultate</string>
-    <string name="select_location_for_product">Alege locatie pentru produs</string>
+    <string name="select_location_for_product">Alege locație pentru produs</string>
     <string name="name_for_product">Numele produsului</string>
+    <string name="empty" />
+    <string name="other">Altele</string>
+    <string name="add_price">Adaugă preț</string>
+    <string name="fuels">Carburanți</string>
+
+    <!--Fuel categories-->
+    <string name="gasoline">Benzină</string>
+    <string name="diesel">Motorină</string>
+    <string name="LPG">GPL</string>
+
+    <!--Fuel types names -->
+    <string name="GASOLINE_STANDARD_95">Standard 95</string>
+    <string name="GASOLINE_EXTRA_99">Extra 99</string>
+
+    <string name="DIESEL_STANDARD">Standard</string>
+    <string name="DIESEL_EXTRA">Extra</string>
+    <string name="select_fuel">Alege carburant</string>
 </resources>

@@ -45,6 +45,9 @@ public class SelectFuelFragment extends Fragment {
         radioGroup.addView(createTypeCategoryTextView(R.string.diesel));
         addRadioButtonsForGroup(FuelTypes.DIESEL_TYPES, radioGroup);
 
+        radioGroup.addView(createTypeCategoryTextView(R.string.other));
+        addRadioButtonsForGroup(FuelTypes.OTHERS, radioGroup);
+
         return view;
     }
 

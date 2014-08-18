@@ -13,11 +13,15 @@
     <string name="no_results_found">No results found</string>
     <string name="select_location_for_product">Select location for product</string>
     <string name="name_for_product">Name for product</string>
+    <string name="empty" />
+    <string name="other">Other</string>
     <string name="add_price">Add price</string>
     <string name="fuels">Fuels</string>
 
+    <!--Fuel categories-->
     <string name="gasoline">Gasoline</string>
     <string name="diesel">Diesel</string>
+    <string name="LPG">LPG</string>
 
     <!--Fuel types names -->
     <string name="GASOLINE_STANDARD_95">Standard 95</string>

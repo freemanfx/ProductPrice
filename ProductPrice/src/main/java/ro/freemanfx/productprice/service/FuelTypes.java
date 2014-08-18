@@ -13,6 +13,10 @@ public interface FuelTypes {
             new FuelResource(R.string.diesel, "DIESEL_EXTRA", R.string.DIESEL_EXTRA)
     };
 
+    FuelResource[] OTHERS = {
+            new FuelResource(R.string.empty, "OTHER_LPG", R.string.LPG)
+    };
+
     static class FuelResource {
         public final int categoryResId;
         public final int resId;
