@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_centerInParent="true"
     android:paddingBottom="@dimen/small_padding"
     android:paddingLeft="@dimen/small_padding"
     android:paddingRight="@dimen/small_padding"
@@ -11,48 +11,62 @@
 
     <TextView
         android:id="@+id/name"
+        style="@style/main_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
+        android:drawableLeft="@drawable/gas_station"
         android:gravity="center_vertical"
         android:hint="Diesel Standard"
-        android:paddingLeft="@dimen/small_padding"
-        android:textSize="18dp" />
+        android:paddingLeft="@dimen/small_padding" />
 
     <RelativeLayout
+        android:id="@+id/place_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:layout_below="@id/name"
+        android:layout_marginTop="@dimen/small_padding">
 
         <TextView
             android:id="@+id/place"
             android:layout_width="0dp"
             android:layout_height="@dimen/input_height"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/select_location_on_map"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/select_location_on_map"
             android:gravity="center_vertical"
-            android:hint="Select a place on the map"
-            android:paddingLeft="16dp"
+            android:hint="@string/select_place_on_map"
+            android:paddingLeft="@dimen/small_padding"
             android:textSize="18dp" />
 
         <ImageButton
             android:id="@+id/select_location_on_map"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:src="@android:drawable/ic_dialog_map" />
     </RelativeLayout>
 
 
     <EditText
         android:id="@+id/price"
+        style="@style/main_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:hint="Price"
+        android:layout_below="@id/place_row"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/price_tag"
+        android:hint="@string/enter_price"
         android:numeric="decimal" />
+
 
     <Button
         android:id="@+id/add"
+        style="@style/main_button"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/input_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@android:drawable/ic_input_add"
+        android:drawablePadding="-20dp"
         android:text="@string/Add" />
-</LinearLayout>
+
+</RelativeLayout>

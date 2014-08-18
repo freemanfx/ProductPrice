@@ -5,4 +5,15 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="main_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/input_height</item>
+        <item name="android:background">@drawable/main_button</item>
+        <item name="android:drawablePadding">@dimen/image_button_padding</item>
+        <item name="android:paddingLeft">@dimen/image_button_padding</item>
+        <item name="android:paddingRight">@dimen/image_button_padding</item>
+        <item name="android:textSize">@dimen/main_menu_button_text_size</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
 </resources>

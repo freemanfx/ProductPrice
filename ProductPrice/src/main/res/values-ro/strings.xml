@@ -30,4 +30,6 @@
     <string name="DIESEL_STANDARD">Standard</string>
     <string name="DIESEL_EXTRA">Extra</string>
     <string name="select_fuel">Alege carburant</string>
+    <string name="select_place_on_map">Alege loc pe hartă</string>
+    <string name="enter_price">Introdu preț</string>
 </resources>

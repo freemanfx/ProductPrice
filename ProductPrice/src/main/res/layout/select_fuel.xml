@@ -3,9 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-
-    >
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:id="@+id/button_bar"
@@ -18,31 +16,17 @@
 
         <Button
             android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/input_height"
-            android:layout_marginBottom="@dimen/distance_between_buttons"
+            style="@style/main_button"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/search"
-            android:drawablePadding="@dimen/image_button_padding"
-            android:paddingLeft="@dimen/image_button_padding"
-            android:paddingRight="@dimen/image_button_padding"
-            android:text="@string/search"
-            android:textSize="@dimen/main_menu_button_text_size" />
+            android:text="@string/search" />
 
         <Button
             android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/input_height"
-            android:layout_marginBottom="@dimen/distance_between_buttons"
+            style="@style/main_button"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/price_tag"
-            android:drawablePadding="@dimen/image_button_padding"
-            android:paddingLeft="@dimen/image_button_padding"
-            android:paddingRight="@dimen/image_button_padding"
-            android:text="@string/add_price"
-            android:textSize="20dp" />
+            android:text="@string/add_price" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,14 +39,11 @@
         android:paddingRight="30dp">
 
 
-    <RadioGroup
+        <RadioGroup
             android:id="@+id/fuel_radio_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RadioGroup>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
 
 </RelativeLayout>

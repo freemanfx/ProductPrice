@@ -30,5 +30,7 @@
     <string name="DIESEL_STANDARD">Standard</string>
     <string name="DIESEL_EXTRA">Extra</string>
     <string name="select_fuel">Select fuel</string>
+    <string name="select_place_on_map">Select a place on the map</string>
+    <string name="enter_price">Enter price</string>
 
 </resources>

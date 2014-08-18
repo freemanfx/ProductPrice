@@ -13,45 +13,26 @@
 
         <Button
             android:id="@+id/find"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/input_height"
+            style="@style/main_button"
             android:layout_marginBottom="@dimen/distance_between_buttons"
-            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/search"
-            android:drawablePadding="@dimen/image_button_padding"
-            android:paddingLeft="@dimen/image_button_padding"
-            android:paddingRight="@dimen/image_button_padding"
-            android:text="@string/search"
-            android:textSize="@dimen/main_menu_button_text_size" />
+            android:text="@string/search" />
 
         <Button
             android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/input_height"
+            style="@style/main_button"
             android:layout_below="@id/find"
             android:layout_marginBottom="@dimen/distance_between_buttons"
-            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/price_tag"
-            android:drawablePadding="@dimen/image_button_padding"
-            android:paddingLeft="@dimen/image_button_padding"
-            android:paddingRight="@dimen/image_button_padding"
-            android:text="@string/add_price"
-            android:textSize="20dp" />
-
+            android:text="@string/add_price" />
 
         <Button
             android:id="@+id/fuels"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/input_height"
+            style="@style/main_button"
             android:layout_below="@id/add"
             android:layout_marginBottom="@dimen/distance_between_buttons"
-            android:background="@android:color/transparent"
             android:drawableLeft="@drawable/gas_station"
-            android:drawablePadding="@dimen/image_button_padding"
-            android:paddingLeft="@dimen/image_button_padding"
-            android:paddingRight="@dimen/image_button_padding"
-            android:text="@string/fuels"
-            android:textSize="@dimen/main_menu_button_text_size" />
+            android:text="@string/fuels" />
 
     </RelativeLayout>
 
