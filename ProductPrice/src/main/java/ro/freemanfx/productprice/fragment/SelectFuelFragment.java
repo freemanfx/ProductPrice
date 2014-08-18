@@ -22,6 +22,9 @@ import ro.freemanfx.productprice.activity.AddFuelPriceActivity;
 import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
 import ro.freemanfx.productprice.service.FuelTypes;
 
+import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
+import static ro.freemanfx.productprice.BeanProvider.displayNoConnectivityMessage;
+
 public class SelectFuelFragment extends Fragment {
 
     @InjectView(R.id.fuel_radio_group)
@@ -47,12 +50,20 @@ public class SelectFuelFragment extends Fragment {
 
     @OnClick(R.id.search)
     public void onSearchButtonClick() {
-        startActivity(new Intent(getActivity(), FindFuelPriceActivity.class));
+        if (connectivityUtil().isConnected()) {
+            startActivity(new Intent(getActivity(), FindFuelPriceActivity.class));
+        } else {
+            displayNoConnectivityMessage();
+        }
     }
 
     @OnClick(R.id.add)
     public void onAddButtonClick() {
-        startActivity(new Intent(getActivity(), AddFuelPriceActivity.class));
+        if (connectivityUtil().isConnected()) {
+            startActivity(new Intent(getActivity(), AddFuelPriceActivity.class));
+        } else {
+            displayNoConnectivityMessage();
+        }
     }
 
     private TextView createTypeCategoryTextView(int textResourceId) {
