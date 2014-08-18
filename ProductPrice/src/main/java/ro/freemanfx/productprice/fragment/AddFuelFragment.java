@@ -92,13 +92,20 @@ public class AddFuelFragment extends Fragment {
     private boolean validInput() {
         String priceString = price.getText().toString();
 
-        if (invalidString(priceString)) {
-            Toast.makeText(getActivity(), "Price is empty!", Toast.LENGTH_SHORT).show();
+        if (getPlace() == null) {
+            Toast.makeText(getActivity(), R.string.please_select_place, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (getPlace() == null) {
-            Toast.makeText(getActivity(), "Please select a place!", Toast.LENGTH_SHORT).show();
+        if (invalidString(priceString)) {
+            Toast.makeText(getActivity(), R.string.price_is_empty, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        double priceDouble = Double.parseDouble(priceString);
+
+        if (priceDouble == 0L) {
+            Toast.makeText(getActivity(), R.string.price_greater_than_zero_expected, Toast.LENGTH_SHORT).show();
             return false;
         }
 

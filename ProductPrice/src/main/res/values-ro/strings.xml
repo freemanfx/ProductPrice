@@ -33,4 +33,7 @@
     <string name="select_place_on_map">Alege loc pe hartă</string>
     <string name="enter_price">Introdu preț</string>
     <string name="add_fuel_price">Adaugă preț carburant</string>
+    <string name="price_is_empty">Prețul nu este completat!</string>
+    <string name="price_greater_than_zero_expected">Prețul trebuie sa fie mai mare decât zero!</string>
+    <string name="please_select_place">Alege o locație!</string>
 </resources>

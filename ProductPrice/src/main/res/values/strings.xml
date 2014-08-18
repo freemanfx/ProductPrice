@@ -33,5 +33,8 @@
     <string name="select_place_on_map">Select a place on the map</string>
     <string name="enter_price">Enter price</string>
     <string name="add_fuel_price">Add fuel price</string>
+    <string name="price_is_empty">Price is empty!</string>
+    <string name="price_greater_than_zero_expected">Price must be greater than zero!</string>
+    <string name="please_select_place">Please select a place!</string>
 
 </resources>
