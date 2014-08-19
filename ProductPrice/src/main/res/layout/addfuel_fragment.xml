@@ -11,7 +11,7 @@
 
     <TextView
         android:id="@+id/name"
-        style="@style/main_button"
+        style="@style/large_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
         android:drawableLeft="@drawable/gas_station"
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:drawableLeft="@android:drawable/ic_input_add"
+        android:drawableLeft="@drawable/plus"
         android:drawablePadding="-20dp"
         android:text="@string/Add" />
 
