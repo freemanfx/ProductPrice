@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/barcode"
-            style="@style/main_button"
+            style="@style/large_tv"
             android:layout_width="match_parent"
             android:hint="1234567890123" />
     </LinearLayout>
@@ -89,24 +89,15 @@
             android:numeric="decimal" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/add"
+        style="@style/main_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/small_padding"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="@dimen/input_height"
-            android:layout_height="@dimen/input_height"
-            android:scaleType="fitCenter"
-            android:src="@drawable/plus" />
-
-        <Button
-            android:id="@+id/add"
-            style="@style/main_button"
-            android:layout_width="match_parent"
-            android:text="@string/Add" />
-    </LinearLayout>
+        android:drawableLeft="@drawable/plus"
+        android:drawablePadding="-20dp"
+        android:text="@string/Add" />
 </RelativeLayout>
