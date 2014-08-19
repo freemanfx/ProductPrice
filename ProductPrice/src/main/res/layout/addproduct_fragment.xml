@@ -1,65 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/small_padding"
     android:paddingLeft="@dimen/small_padding"
     android:paddingRight="@dimen/small_padding"
     android:paddingTop="@dimen/fragment_padding_top">
 
-    <TextView
-        android:id="@+id/barcode"
+    <LinearLayout
+        android:id="@+id/barcode_row"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
-        android:gravity="center_vertical"
-        android:hint="1234567890123"
-        android:paddingLeft="@dimen/small_padding"
-        android:textSize="18dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/input_height"
+            android:layout_height="@dimen/input_height"
+            android:scaleType="fitCenter"
+            android:src="@drawable/barcode" />
+
+        <TextView
+            android:id="@+id/barcode"
+            style="@style/main_button"
+            android:layout_width="match_parent"
+            android:hint="1234567890123" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
+        android:layout_below="@id/barcode_row"
+        android:layout_marginTop="@dimen/small_padding"
         android:enabled="false"
-        android:hint="Searching for product ..." />
+        android:hint="Searching for product ..."
+        android:paddingLeft="60dp" />
 
     <RelativeLayout
+        android:id="@+id/place_row"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <TextView
-            android:id="@+id/place"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/input_height"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/select_location_on_map"
-            android:gravity="center_vertical"
-            android:hint="Select a place on the map"
-            android:paddingLeft="16dp"
-            android:textSize="18dp" />
+        android:layout_height="48dp"
+        android:layout_below="@id/name"
+        android:layout_marginTop="@dimen/small_padding">
 
         <ImageButton
             android:id="@+id/select_location_on_map"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map_icon" />
+
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/input_height"
             android:layout_alignParentRight="true"
-            android:src="@android:drawable/ic_dialog_map" />
+            android:layout_toRightOf="@+id/select_location_on_map"
+            android:gravity="center_vertical"
+            android:hint="@string/select_place_on_map"
+            android:paddingLeft="10dp"
+            android:textSize="18dp" />
+
     </RelativeLayout>
 
-
-    <EditText
-        android:id="@+id/price"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
-        android:hint="Price"
-        android:numeric="decimal" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/place_row"
+        android:layout_marginTop="@dimen/small_padding"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/add"
+        <ImageView
+            android:layout_width="@dimen/input_height"
+            android:layout_height="@dimen/input_height"
+            android:scaleType="fitCenter"
+            android:src="@drawable/price_tag" />
+
+        <EditText
+            android:id="@+id/price"
+            style="@style/main_button"
+            android:layout_width="match_parent"
+
+            android:background="@android:color/transparent"
+            android:hint="@string/enter_price"
+            android:numeric="decimal" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/input_height"
-        android:text="@string/Add" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/small_padding"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/input_height"
+            android:layout_height="@dimen/input_height"
+            android:scaleType="fitCenter"
+            android:src="@drawable/plus" />
+
+        <Button
+            android:id="@+id/add"
+            style="@style/main_button"
+            android:layout_width="match_parent"
+            android:text="@string/Add" />
+    </LinearLayout>
+</RelativeLayout>

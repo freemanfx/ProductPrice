@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/small_padding"
     android:paddingTop="@dimen/fragment_padding_top">
 
-<TextView
+    <TextView
         android:id="@+id/name"
         style="@style/main_button"
         android:layout_width="match_parent"
@@ -26,6 +26,15 @@
         android:layout_below="@id/name"
         android:layout_marginTop="@dimen/small_padding">
 
+        <ImageButton
+            android:id="@+id/select_location_on_map"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map_icon" />
+
         <TextView
             android:id="@+id/place"
             android:layout_width="0dp"
@@ -36,15 +45,6 @@
             android:hint="@string/select_place_on_map"
             android:paddingLeft="10dp"
             android:textSize="18dp" />
-
-        <ImageButton
-            android:id="@+id/select_location_on_map"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/map_icon" />
 
     </RelativeLayout>
 
