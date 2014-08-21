@@ -27,8 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|center_vertical"
-        android:text="No results"
+        android:text="@string/no_results"
         android:textSize="@dimen/main_menu_button_text_size" />
-
 
 </LinearLayout>
