@@ -65,6 +65,9 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
     }
 
     private void addExistingPlaces() {
+        if (!isAdded()) {
+            return;
+        }
         String locationType = getActivity().getIntent().getStringExtra(Constants.LOCATION_TYPE);
 
         if (Constants.PRODUCT_LOCATION.equals(locationType)) {
@@ -92,6 +95,9 @@ public class SelectLocationMap extends SupportMapFragment implements GoogleMap.O
     }
 
     private void addMarkersFor(List<Place> places) {
+        if (!isAdded()) {
+            return;
+        }
         for (Place place : places) {
             MarkerOptions markerOption = existingPlaceMarker(place);
             Marker marker = map.addMarker(markerOption);
