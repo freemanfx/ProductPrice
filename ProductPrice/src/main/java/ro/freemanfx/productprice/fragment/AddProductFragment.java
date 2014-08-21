@@ -73,7 +73,7 @@ public class AddProductFragment extends Fragment implements Constants {
                 });
     }
 
-    @OnClick(R.id.select_location_on_map)
+    @OnClick(R.id.place)
     public void selectLocationOnMap() {
         if (!connectivityUtil().isConnected()) {
             displayNoConnectivityMessage();
