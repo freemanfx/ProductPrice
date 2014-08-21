@@ -31,13 +31,10 @@ public class FindProductFragment extends ListFragment {
         barcode = getActivity().getIntent().getStringExtra(BARCODE);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         setListAdapter(new ProductsAdapter(barcode));
-        //TODO: fix this, it crashes
-        //setEmptyText(getString(R.string.no_results_found));
         return view;
     }
 
