@@ -1,7 +1,6 @@
 package ro.freemanfx.productprice.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,8 @@ import static ro.freemanfx.productprice.BeanProvider.productService;
 import static ro.freemanfx.productprice.Constants.BARCODE;
 import static rx.android.schedulers.AndroidSchedulers.mainThread;
 
-public class FindProductFragment extends ListFragment {
+public class FindProductFragment extends CustomListFragment {
     private String barcode;
-    private boolean dataLoaded = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,18 +32,8 @@ public class FindProductFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        setListAdapter(new ProductsAdapter(barcode));
+        listView.setAdapter(new ProductsAdapter(barcode));
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!dataLoaded) {
-            setListShown(false);
-        } else {
-            setListShown(true);
-        }
     }
 
     private void setTitleForProduct(String title) {
@@ -87,17 +75,15 @@ public class FindProductFragment extends ListFragment {
                         @Override
                         public void call(List<ProductPrice> productPrices) {
                             AppContext.setProductPrices(productPrices);
-
                             if (productPrices.size() > 0) {
                                 Product product = productPrices.get(0).getProduct();
                                 setTitleForProduct(product.getName());
+                                addAll(productPrices);
+                                notifyDataSetChanged();
+                                showListAndHideProgressBar();
                             } else {
-                                setTitleForProduct(getString(R.string.no_results_found));
+                                showNoResults();
                             }
-
-                            addAll(productPrices);
-                            notifyDataSetChanged();
-                            setListShown(true);
                             dataLoaded = true;
                         }
                     });

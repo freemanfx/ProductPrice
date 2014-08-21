@@ -19,7 +19,6 @@ public class FindProductActivity extends SingleFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle("Loading prices...");
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
