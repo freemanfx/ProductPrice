@@ -1,20 +1,16 @@
 package ro.freemanfx.productprice.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.appspot.wise_logic_658.fuelprice.model.FuelPrice;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.R;
 import ro.freemanfx.productprice.activity.FindFuelPriceActivity;
@@ -23,47 +19,18 @@ import rx.functions.Action1;
 
 import static ro.freemanfx.productprice.BeanProvider.fuelService;
 
-public class FindFuelPriceFragment extends Fragment {
-    @InjectView(R.id.progressbar)
-    View progressBar;
-    @InjectView(android.R.id.list)
-    ListView listView;
-    @InjectView(android.R.id.empty)
-    TextView emptyTextView;
-    private boolean dataLoaded = false;
+public class FindFuelPriceFragment extends CustomListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.list_fragment, container, false);
-        ButterKnife.inject(this, view);
-        listView.setAdapter(new FuePriceAdapter());
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        listView.setAdapter(new FindFuelPriceFragment.FuePriceAdapter());
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!dataLoaded) {
-            listView.setVisibility(View.GONE);
-        } else {
-            showListAndHideProgressBar();
-        }
     }
 
     private void setMapButtonVisibility(boolean visibility) {
         FindFuelPriceActivity activity = (FindFuelPriceActivity) getActivity();
         activity.getShowMapMenuItem().setVisible(visibility);
-    }
-
-    private void showNoResults() {
-        progressBar.setVisibility(View.GONE);
-        listView.setVisibility(View.GONE);
-        emptyTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showListAndHideProgressBar() {
-        progressBar.setVisibility(View.GONE);
-        listView.setVisibility(View.VISIBLE);
     }
 
     private class FuePriceAdapter extends ArrayAdapter<FuelPrice> {
