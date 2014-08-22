@@ -38,5 +38,6 @@
     <string name="please_select_place">Please select a place!</string>
     <string name="name_is_empty">Name is empty!</string>
     <string name="no_results">No results</string>
+    <string name="scan_product_barcode">Scan product barcode</string>
 
 </resources>
