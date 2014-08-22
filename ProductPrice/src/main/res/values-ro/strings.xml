@@ -38,4 +38,5 @@
     <string name="please_select_place">Alege o locație!</string>
     <string name="name_is_empty">Numele nu este completat!</string>
     <string name="no_results">Nu sunt rezultate</string>
+    <string name="scan_product_barcode">Scanează codul de bare</string>
 </resources>

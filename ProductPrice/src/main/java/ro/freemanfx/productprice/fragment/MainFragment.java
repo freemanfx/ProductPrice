@@ -12,8 +12,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ro.freemanfx.productprice.AppContext;
 import ro.freemanfx.productprice.Constants;
+import ro.freemanfx.productprice.IntegratedScanActivity;
 import ro.freemanfx.productprice.R;
-import ro.freemanfx.productprice.activity.ScanProductActivity;
 import ro.freemanfx.productprice.activity.SelectFuelActivity;
 
 import static ro.freemanfx.productprice.BeanProvider.connectivityUtil;
@@ -68,7 +68,7 @@ public class MainFragment extends Fragment implements Constants {
     }
 
     private void startScanFor(String scanIntent) {
-        Intent intent = new Intent(getActivity(), ScanProductActivity.class);
+        Intent intent = new Intent(getActivity(), IntegratedScanActivity.class);
         intent.putExtra(Constants.SCAN_INTENT, scanIntent);
         startActivity(intent);
     }

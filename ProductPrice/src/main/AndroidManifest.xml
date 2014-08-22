@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ro.freemanfx.productprice">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -47,14 +48,12 @@
         <activity
             android:name=".activity.AddProductActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.ScanProductActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".activity.ShowPricesOnMapActivity" />
         <activity android:name=".activity.SelectLocationActivity" />
         <activity android:name=".activity.SelectFuelActivity" />
         <activity android:name=".activity.AddFuelPriceActivity" />
         <activity android:name=".activity.FindFuelPriceActivity" />
+        <activity android:name=".IntegratedScanActivity" />
     </application>
 
 </manifest>
